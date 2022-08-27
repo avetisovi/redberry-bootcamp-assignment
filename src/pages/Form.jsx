@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CoworkerInfo from '../components/CoworkerInfo';
 import LaptopInfo from '../components/LaptopInfo';
 import FormHeader from '../components/FormHeader';
+import BackBtn from '../components/BackBtn';
 
 const Form = () => {
   // form steps
@@ -81,6 +82,7 @@ const Form = () => {
 
   return (
     <div>
+      <BackBtn />
       <FormHeader step={step} />
       <div className="container">
         {step === 1 ? (

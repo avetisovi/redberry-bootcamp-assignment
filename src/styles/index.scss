@@ -30,4 +30,25 @@ body {
   margin: 0 auto;
 }
 
+.back-btn {
+  position: absolute;
+  top: 53px;
+  left: 70px;
+  background-color: #d9d9d9;
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.1s ease-in-out;
+  &:hover {
+    background-color: darken(#d9d9d9, 5);
+  }
+  img {
+    width: 9px;
+    height: 16px;
+  }
+}
+
 @import 'media.scss';
