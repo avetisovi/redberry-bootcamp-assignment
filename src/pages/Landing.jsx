@@ -16,7 +16,7 @@ const Landing = () => {
         <img className="landing-img" src={landingDesktop} alt="" />
       </picture>
       <div className="landing-links">
-        <Link to="/" className="landing-link">
+        <Link to="/form" className="landing-link">
           ჩანაწერის დამატება
         </Link>
         <Link to="/" className="landing-link">
