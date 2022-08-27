@@ -1,12 +1,31 @@
 @import 'normalize.css';
+@import 'variables.scss';
+@import 'pages/landing.scss';
 
 @font-face {
-  font-family: "HelveticaNeue";
-  src: local("HelveticaNeue"),
-    url("../fonts/HelveticaNeue.ttc") format("truetype");
-  font-weight: 400;
+  font-family: 'HelveticaNeue';
+  src: local('HelveticaNeue'),
+    url('../fonts/HelveticaNeue.ttc') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'HelveticaNeue';
+  font-weight: 500;
+  margin: 0;
 }
+
+.App {
+  min-height: 100vh;
+}
+
+.container {
+  width: 1226px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+@import 'media.scss';

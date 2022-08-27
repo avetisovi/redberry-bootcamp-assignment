@@ -1,0 +1,29 @@
+.landing {
+  &-page {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  &-logo {
+    width: 112px;
+    height: 18px;
+    margin-bottom: 85px;
+  }
+  &-img {
+    margin-bottom: 123px;
+    width: 780px;
+    height: auto;
+  }
+  &-links {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  &-link {
+    width: 387px;
+    @include regular-btn;
+  }
+}
