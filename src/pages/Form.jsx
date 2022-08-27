@@ -82,11 +82,15 @@ const Form = () => {
   return (
     <div>
       <FormHeader step={step} />
-      {step === 1 ? (
-        <CoworkerInfo {...{ values, setValues, nextStep }} />
-      ) : (
-        <LaptopInfo {...{ values, setValues, prevStep, handleConfirmation }} />
-      )}
+      <div className="container">
+        {step === 1 ? (
+          <CoworkerInfo {...{ values, setValues, nextStep }} />
+        ) : (
+          <LaptopInfo
+            {...{ values, setValues, prevStep, handleConfirmation }}
+          />
+        )}
+      </div>
     </div>
   );
 };

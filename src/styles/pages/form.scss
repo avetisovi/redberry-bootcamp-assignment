@@ -1,0 +1,33 @@
+.form {
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding: 40px 15px;
+  }
+  &__header-steps {
+    position: relative;
+    display: flex;
+    gap: 65px;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      width: 40%;
+      height: 2px;
+      background-color: #000;
+      transition: all 0.5s ease-in-out;
+    }
+    &.one::after {
+      width: 30%;
+      left: 20px;
+    }
+    &.two::after {
+      left: calc(50% + 30px);
+    }
+  }
+  &__step {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+  }
+}
