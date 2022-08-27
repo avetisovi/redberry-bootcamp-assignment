@@ -1,0 +1,12 @@
+@import 'normalize.css';
+
+@font-face {
+  font-family: "HelveticaNeue";
+  src: local("HelveticaNeue"),
+    url("../fonts/HelveticaNeue.ttc") format("truetype");
+  font-weight: 400;
+}
+
+body {
+  font-family: 'HelveticaNeue';
+}
