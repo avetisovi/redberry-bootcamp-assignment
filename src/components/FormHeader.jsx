@@ -8,8 +8,8 @@ const FormHeader = ({ step }) => {
           step === 1 ? 'form__header-steps one' : 'form__header-steps two'
         }
       >
-        <p className="form__step">თანამშრომლის ინფო</p>
-        <p className="form__step">ლეპტოპის მახასიათებლები</p>
+        <p className="form__header-step">თანამშრომლის ინფო</p>
+        <p className="form__header-step">ლეპტოპის მახასიათებლები</p>
       </div>
     </div>
   );

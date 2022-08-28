@@ -4,6 +4,8 @@ import LaptopInfo from '../components/LaptopInfo';
 import FormHeader from '../components/FormHeader';
 import BackBtn from '../components/BackBtn';
 
+import logo from '../images/form-logo.png';
+
 const Form = () => {
   // form steps
 
@@ -81,10 +83,10 @@ const Form = () => {
   const handleConfirmation = () => {};
 
   return (
-    <div>
+    <div className="form">
       <BackBtn />
       <FormHeader step={step} />
-      <div className="container">
+      <div className="form__container">
         {step === 1 ? (
           <CoworkerInfo {...{ values, setValues, nextStep }} />
         ) : (
@@ -93,6 +95,7 @@ const Form = () => {
           />
         )}
       </div>
+      <img className="form__logo" src={logo} alt="" />
     </div>
   );
 };

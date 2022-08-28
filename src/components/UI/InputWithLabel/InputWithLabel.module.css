@@ -1,0 +1,11 @@
+.wrapper {
+  width: 100%;
+}
+
+.label {
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}

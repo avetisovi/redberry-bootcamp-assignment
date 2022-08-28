@@ -12,7 +12,7 @@ const Landing = () => {
         <img src={logo} alt="REDBERRY" />
       </Link>
       <picture>
-        <source media="(max-width:810px)" srcset={landingMobile} />
+        <source media="(max-width:810px)" srcSet={landingMobile} />
         <img className="landing-img" src={landingDesktop} alt="" />
       </picture>
       <div className="landing-links">

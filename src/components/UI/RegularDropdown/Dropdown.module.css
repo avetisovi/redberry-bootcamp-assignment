@@ -1,0 +1,53 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.current {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #ebebeb;
+  border-radius: 8px;
+  padding: 20px 25px 20px 15px;
+  cursor: pointer;
+
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.current img {
+  width: 14px;
+  height: 8px;
+}
+
+.current .active {
+  transform: rotate(180deg);
+}
+
+.options {
+  position: absolute;
+  list-style: none;
+  top: 100%;
+  width: 100%;
+  background-color: #fff;
+  margin: 0;
+  box-shadow: 0px 4px 34px 0px #00000040;
+  border-radius: 8px;
+  padding: 0;
+  z-index: 1;
+}
+
+.option {
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 21px;
+  font-weight: 400;
+  padding: 10px;
+}
+
+.option:hover {
+  background: #e7f0f8;
+}
