@@ -5,6 +5,7 @@ import DateInput from './UI/DateInput/DateInput';
 import InputWithLabelAndHint from './UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import Dropdown from './UI/RegularDropdown/Dropdown';
 import RegularRadioInput from './UI/RegularRadioInput/RegularRadioInput';
+import gelImg from '../images/gel.svg';
 
 const LaptopInfo = ({ prevStep, handleConfirmation }) => {
   const [brandOptions, setBrandOptions] = useState([]);
@@ -70,6 +71,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation }) => {
           label="ლეპტოპის ფასი"
           hint="მხოლოდ ციფრები"
           placeholder="0000"
+          img={gelImg}
         />
       </div>
       <RegularRadioInput

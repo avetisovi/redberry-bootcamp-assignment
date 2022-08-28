@@ -1,10 +1,29 @@
 import React from 'react';
 import cl from './RegularInput.module.css';
-import { formatDate } from '../../../utils';
+import tickIcon from '../../../images/tick.svg';
 
-const RegularInput = ({ onChange, value, type = 'text', placeholder }) => {
+const RegularInput = ({
+  onChange,
+  value,
+  type = 'text',
+  placeholder,
+  img,
+  validation
+}) => {
   return (
-    <input className={cl.input} {...{ onChange, value, type, placeholder }} />
+    <div className={cl.wrapper}>
+      <input
+        required
+        className={cl.input}
+        {...{ onChange, value, type, placeholder }}
+        {...validation}
+      />
+      {img ? (
+        <img className={cl.img} src={img} alt="" />
+      ) : (
+        <img className={cl.tick} src={tickIcon} alt="valid" />
+      )}
+    </div>
   );
 };
 

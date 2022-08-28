@@ -3,6 +3,11 @@
   width: 100%;
 }
 
+.wrapper.disabled .current {
+  background-color: #f5f5f5;
+  cursor: default;
+}
+
 .current {
   display: flex;
   justify-content: space-between;
@@ -16,6 +21,11 @@
   font-size: 18px;
   line-height: 21px;
   font-weight: 500;
+  transition: background 0.2s ease-in-out;
+}
+
+.current:hover {
+  background: #dfdfdf;
 }
 
 .current img {

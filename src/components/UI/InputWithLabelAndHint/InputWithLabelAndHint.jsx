@@ -6,17 +6,21 @@ const InputWithLabelAndHint = ({
   label,
   hint,
   onChange,
-  value,
   type,
   name,
-  placeholder
+  placeholder,
+  img,
+  validation,
+  value
 }) => {
   return (
     <div className={cl.wrapper}>
       <label className={cl.label} htmlFor={name}>
         {label}
       </label>
-      <RegularInput {...{ onChange, value, type, placeholder }} />
+      <RegularInput
+        {...{ onChange, value, type, placeholder, img, validation }}
+      />
       <p className={cl.hint}>{hint}</p>
     </div>
   );

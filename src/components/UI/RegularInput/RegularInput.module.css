@@ -1,3 +1,7 @@
+.wrapper {
+  position: relative;
+}
+
 .input {
   display: block;
   width: 100%;
@@ -6,7 +10,19 @@
   font-weight: 400;
   padding: 20px 15px;
   border-radius: 8px;
-  border: 1px solid #8ac0e2;
+  border: 1.8px solid #8ac0e2;
+}
+
+.input:focus {
+  background: rgba(43, 75, 242, 0.06);
+  outline-color: #6499ff;
+  outline-width: thin;
+  border: 0;
+  padding: 22px 15px;
+}
+
+.input:invalid:not(:focus):not(:placeholder-shown) {
+  border: 1.8px solid #e52f2f;
 }
 
 .input::placeholder {
@@ -14,4 +30,29 @@
   line-height: 21px;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.tick {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+
+  width: 22px;
+  height: 22px;
+  display: none;
+}
+
+.input:valid:not(:focus):not(:placeholder-shown) + .tick {
+  display: block;
+}
+
+.img {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+
+  width: 18px;
+  height: 21px;
 }

@@ -100,11 +100,15 @@
   &-info__prev-btn {
     border: 0;
     background-color: transparent;
+    cursor: pointer;
 
     color: #62a1eb;
     font-size: 18px;
     line-height: 21px;
     font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   &-info__submit-btn {
     @include regular-btn;
