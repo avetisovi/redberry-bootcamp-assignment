@@ -136,6 +136,10 @@
   flex-direction: column;
   gap: 65px;
 
+  .imgInputAlert {
+    display: none;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -150,6 +154,22 @@
   &.dragover {
     background-color: darken(#f7f7f7, 5);
   }
+  &.alert {
+    background-color: #fff1f1;
+    gap: 20px;
+    &::before {
+      border: 9px dashed #e52f2f;
+    }
+    .imgInputAlert {
+      display: block;
+      width: 38px;
+      height: 34px;
+    }
+    p {
+      color: #e52f2f;
+      margin-bottom: 45px;
+    }
+  }
   p {
     font-weight: 500;
     font-size: 20px;
@@ -159,8 +179,11 @@
   }
   label {
     @include regular-btn;
+    z-index: 1;
     input {
-      display: none;
+      width: 0;
+      height: 0;
+      opacity: 0;
     }
   }
 

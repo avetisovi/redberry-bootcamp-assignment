@@ -30,8 +30,8 @@ const Form = () => {
   // Laptop information
   const [laptopImg, setLaptopImg] = useState(null);
   const [laptopName, setLaptopName] = useState('');
-  const [laptopBrand, setLaptopBrand] = useState('');
-  const [cpu, setCpu] = useState('');
+  const [laptopBrand, setLaptopBrand] = useState({});
+  const [cpu, setCpu] = useState({});
   const [cpuCore, setCpuCore] = useState('');
   const [cpuThread, setCpuThread] = useState('');
   const [ram, setRam] = useState('');

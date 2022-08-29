@@ -8,8 +8,8 @@ import { fetchOptions } from '../utils';
 const CoworkerInfo = ({ nextStep, values, setValues }) => {
   const [teamOptions, setTeamOptions] = useState([]);
   const [posOptions, setPosOptions] = useState([]);
-  const [teamSelectAlert, setTeamSelectAlert] = useState(false);
-  const [posSelectAlert, setPosSelectAlert] = useState(false);
+  const [teamDropdownAlert, setTeamDropdownAlert] = useState(false);
+  const [posDropdownAlert, setPosDropdownAlert] = useState(false);
 
   useEffect(() => {
     fetchOptions('https://pcfy.redberryinternship.ge/api/teams').then((res) =>
@@ -24,12 +24,12 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isObjectEmpty(values.team)) {
-      setTeamSelectAlert(true);
+      setTeamDropdownAlert(true);
     } else if (isObjectEmpty(values.position)) {
-      setPosSelectAlert(true);
+      setPosDropdownAlert(true);
     } else {
-      setTeamSelectAlert(false);
-      setPosSelectAlert(false);
+      setTeamDropdownAlert(false);
+      setPosDropdownAlert(false);
       nextStep();
     }
   };
@@ -61,8 +61,8 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
         options={teamOptions}
         setValue={setValues.setTeam}
         value={values.team}
-        alert={teamSelectAlert}
-        setAlert={setTeamSelectAlert}
+        alert={teamDropdownAlert}
+        setAlert={setTeamDropdownAlert}
       />
       <Dropdown
         disabled={isObjectEmpty(values.team)}
@@ -70,8 +70,8 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
         options={posOptions.filter((opt) => opt.team_id === values.team.id)}
         setValue={setValues.setPosition}
         value={values.position}
-        alert={posSelectAlert}
-        setAlert={setPosSelectAlert}
+        alert={posDropdownAlert}
+        setAlert={setPosDropdownAlert}
       />
       <InputWithLabelAndHint
         label="მეილი"

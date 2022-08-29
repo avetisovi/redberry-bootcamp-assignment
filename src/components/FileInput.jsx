@@ -1,10 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { triggerOnEnter } from '../utils';
+import imgMissing from '../images/imgMissing.svg';
 
-const FileInput = () => {
-  const wrapperRef = useRef(null);
+const FileInput = ({ value, setValue, alert, setAlert }) => {
   const [dragging, setDragging] = useState(false);
   const [image, setImage] = useState(null);
-  const [imageFile, setImageFile] = useState(null);
+
+  const wrapperClasses = () => {
+    let initialClass = 'file-drop';
+    if (dragging) {
+      initialClass += ' dragover';
+    }
+    if (alert) {
+      initialClass += ' alert';
+    }
+    return initialClass;
+  };
 
   let dragCounter = 0;
 
@@ -12,6 +23,7 @@ const FileInput = () => {
     e.preventDefault();
     e.stopPropagation();
   };
+
   const handleDragIn = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -20,6 +32,7 @@ const FileInput = () => {
       setDragging(true);
     }
   };
+
   const handleDragOut = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -27,6 +40,7 @@ const FileInput = () => {
     if (dragCounter > 0) return;
     setDragging(false);
   };
+
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -37,9 +51,10 @@ const FileInput = () => {
         const blob = new Blob([buf], { type: 'image/png' });
         setImage(URL.createObjectURL(blob));
       });
-      setImageFile(newFile);
+      setValue(newFile);
       e.dataTransfer.clearData();
       dragCounter = 0;
+      setAlert(false);
     }
   };
 
@@ -50,16 +65,17 @@ const FileInput = () => {
         const blob = new Blob([buf], { type: 'image/png' });
         setImage(URL.createObjectURL(blob));
       });
-      setImageFile(newFile);
+      setValue(newFile);
+      setAlert(false);
     }
   };
 
   const fileRemove = () => {
     setImage(null);
-    setImageFile(null);
+    setValue(null);
   };
 
-  if (imageFile) {
+  if (value) {
     return (
       <div className="file-drop">
         <img className="file-drop__img" src={image} alt="laptop" />
@@ -72,17 +88,24 @@ const FileInput = () => {
 
   return (
     <div
-      ref={wrapperRef}
-      className={dragging ? 'file-drop dragover' : 'file-drop'}
+      className={wrapperClasses()}
       onDragEnter={handleDragIn}
       onDragLeave={handleDragOut}
       onDragOver={handleDrag}
       onDrop={handleDrop}
     >
+      <img className="imgInputAlert" src={imgMissing} alt="" />
       <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
-      <label htmlFor="file-input">
+      <label htmlFor="file-input" tabIndex="0" onKeyPress={triggerOnEnter}>
         ატვირთე
-        <input id="file-input" type="file" value="" onChange={onFileDrop} />
+        <input
+          id="file-input"
+          type="file"
+          value=""
+          onChange={onFileDrop}
+          name="file-input"
+          tabIndex="-1"
+        />
       </label>
     </div>
   );

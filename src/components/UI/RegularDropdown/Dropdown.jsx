@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cl from './Dropdown.module.css';
 import arrow from '../../../images/dropdown-arrow.svg';
+import { triggerOnEnter } from '../../../utils';
 
 const Dropdown = ({
   placeholder,
@@ -42,11 +43,6 @@ const Dropdown = ({
     setValue(opt);
     setMenuVisible(false);
     setAlert(false);
-  };
-
-  const triggerOnEnter = (e) => {
-    e.preventDefault();
-    e.target.click();
   };
 
   document.querySelector('body').addEventListener('click', (e) => {
