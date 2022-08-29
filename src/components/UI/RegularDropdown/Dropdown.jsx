@@ -2,10 +2,33 @@ import React, { useState } from 'react';
 import cl from './Dropdown.module.css';
 import arrow from '../../../images/dropdown-arrow.svg';
 
-const Dropdown = ({ placeholder, options, setValue, disabled }) => {
-  const [currentChoiceName, setCurrentChoiceName] = useState(placeholder);
-  const [currentChoice, setCurrentChoice] = useState({});
+const Dropdown = ({
+  placeholder,
+  options,
+  setValue,
+  value,
+  disabled,
+  alert,
+  setAlert
+}) => {
+  const [currentChoiceName, setCurrentChoiceName] = useState(
+    value?.name || placeholder
+  );
+  const [currentChoice, setCurrentChoice] = useState(value);
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const classes = () => {
+    let initialClass = cl.wrapper;
+    if (disabled) {
+      initialClass += ' ' + cl.disabled;
+    }
+    if (alert) {
+      initialClass += ' ' + cl.alert;
+    }
+
+    return initialClass;
+  };
+
   const toggleMenu = (e) => {
     e.stopPropagation();
     if (!disabled) {
@@ -18,6 +41,7 @@ const Dropdown = ({ placeholder, options, setValue, disabled }) => {
     setCurrentChoiceName(opt.name);
     setValue(opt);
     setMenuVisible(false);
+    setAlert(false);
   };
 
   const triggerOnEnter = (e) => {
@@ -30,7 +54,7 @@ const Dropdown = ({ placeholder, options, setValue, disabled }) => {
   });
 
   return (
-    <div className={disabled ? cl.wrapper + ' ' + cl.disabled : cl.wrapper}>
+    <div className={classes()}>
       <div
         tabIndex="0"
         className={cl.current}

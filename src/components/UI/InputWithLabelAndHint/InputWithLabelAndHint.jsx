@@ -5,13 +5,13 @@ import RegularInput from '../RegularInput/RegularInput';
 const InputWithLabelAndHint = ({
   label,
   hint,
-  onChange,
   type,
   name,
   placeholder,
   img,
   validation,
-  value
+  value,
+  onChange
 }) => {
   return (
     <div className={cl.wrapper}>
@@ -19,7 +19,7 @@ const InputWithLabelAndHint = ({
         {label}
       </label>
       <RegularInput
-        {...{ onChange, value, type, placeholder, img, validation }}
+        {...{ onChange, value, type, placeholder, img, validation, name }}
       />
       <p className={cl.hint}>{hint}</p>
     </div>

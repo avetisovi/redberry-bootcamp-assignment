@@ -8,6 +8,10 @@
   cursor: default;
 }
 
+.wrapper.alert .current {
+  border: 1.8px solid #e52f2f;
+}
+
 .current {
   display: flex;
   justify-content: space-between;

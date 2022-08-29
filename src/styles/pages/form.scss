@@ -47,6 +47,10 @@
   }
 }
 
+.invalid + p {
+  color: #e52f2f;
+}
+
 .coworker-info {
   display: flex;
   flex-direction: column;

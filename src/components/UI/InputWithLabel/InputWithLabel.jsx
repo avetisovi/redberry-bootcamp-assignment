@@ -4,8 +4,8 @@ import RegularInput from '../RegularInput/RegularInput';
 
 const InputWithLabel = ({
   label,
-  onChange,
   value,
+  onChange,
   type,
   name,
   placeholder

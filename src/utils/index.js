@@ -3,3 +3,7 @@ export const fetchOptions = async (url) => {
   const response = await request.json();
   return response.data;
 };
+
+export const isObjectEmpty = (obj) => {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+};

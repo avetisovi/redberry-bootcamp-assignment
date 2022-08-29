@@ -22,8 +22,8 @@ const Form = () => {
   // Coworker information
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [team, setTeam] = useState('');
-  const [position, setPosition] = useState('');
+  const [team, setTeam] = useState({});
+  const [position, setPosition] = useState({});
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 

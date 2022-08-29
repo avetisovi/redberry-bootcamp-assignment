@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import InputWithLabelAndHint from './UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import Dropdown from './UI/RegularDropdown/Dropdown';
+import { isObjectEmpty } from '../utils';
 
 import { fetchOptions } from '../utils';
 
 const CoworkerInfo = ({ nextStep, values, setValues }) => {
   const [teamOptions, setTeamOptions] = useState([]);
   const [posOptions, setPosOptions] = useState([]);
+  const [teamSelectAlert, setTeamSelectAlert] = useState(false);
+  const [posSelectAlert, setPosSelectAlert] = useState(false);
 
   useEffect(() => {
     fetchOptions('https://pcfy.redberryinternship.ge/api/teams').then((res) =>
@@ -18,8 +21,21 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
     );
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isObjectEmpty(values.team)) {
+      setTeamSelectAlert(true);
+    } else if (isObjectEmpty(values.position)) {
+      setPosSelectAlert(true);
+    } else {
+      setTeamSelectAlert(false);
+      setPosSelectAlert(false);
+      nextStep();
+    }
+  };
+
   return (
-    <form className="coworker-info">
+    <form className="coworker-info" onSubmit={handleSubmit}>
       <div className="coworker-info__top">
         <InputWithLabelAndHint
           label="სახელი"
@@ -27,7 +43,8 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
           placeholder="გრიშა"
           validation={{ pattern: '[ა-ჰ]{2,}' }}
           value={values.firstName}
-          onChange={(e) => setValues.setFirstName(e.target.value)}
+          onChange={setValues.setFirstName}
+          name="firstName"
         />
         <InputWithLabelAndHint
           label="გვარი"
@@ -35,37 +52,46 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
           placeholder="ბაგრატიონი"
           validation={{ pattern: '[ა-ჰ]{2,}' }}
           value={values.lastName}
-          onChange={(e) => setValues.setLastName(e.target.value)}
+          onChange={setValues.setLastName}
+          name="lastName"
         />
       </div>
       <Dropdown
         placeholder="თიმი"
         options={teamOptions}
         setValue={setValues.setTeam}
+        value={values.team}
+        alert={teamSelectAlert}
+        setAlert={setTeamSelectAlert}
       />
       <Dropdown
-        disabled={!values.team}
+        disabled={isObjectEmpty(values.team)}
         placeholder="პოზიცია"
         options={posOptions.filter((opt) => opt.team_id === values.team.id)}
         setValue={setValues.setPosition}
+        value={values.position}
+        alert={posSelectAlert}
+        setAlert={setPosSelectAlert}
       />
       <InputWithLabelAndHint
         label="მეილი"
         hint="უნდა მთავრდებოდეს @redberry.ge-ით"
         placeholder="grish666@redberry.ge"
-        // validation={{ pattern: 'ge$' }}
+        validation={{ pattern: '[a-z0-9._%+-]+@redberry+.ge$' }}
         value={values.email}
-        onChange={(e) => setValues.setEmail(e.target.value)}
+        onChange={setValues.setEmail}
         type="email"
       />
       <InputWithLabelAndHint
         label="ტელეფონის ნომერი"
         hint="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
         placeholder="+995 598 00 07 01"
+        validation={{ pattern: '^\\+995(\\s?[0-9]){9}' }}
+        value={values.phoneNumber}
+        onChange={setValues.setPhoneNumber}
+        type="tel"
       />
-      <button className="coworker-info__btn" onClick={nextStep}>
-        შემდეგი
-      </button>
+      <button className="coworker-info__btn">შემდეგი</button>
     </form>
   );
 };
