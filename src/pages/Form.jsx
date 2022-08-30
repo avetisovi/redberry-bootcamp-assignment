@@ -7,8 +7,11 @@ import axios from 'axios';
 
 import logo from '../images/form-logo.png';
 import { objToFormData } from '../utils';
+import FormSuccessPopup from '../components/FormSuccessPopup';
 
 const Form = () => {
+  const [successPopup, setSuccessPopup] = useState(false);
+
   const [coworkerData, setCoworkerData] = useState();
   const [laptopData, setLaptopData] = useState();
   // form steps
@@ -94,6 +97,8 @@ const Form = () => {
     const formData = objToFormData(fullData);
   };
 
+  if (successPopup) document.querySelector('body').style.overflow = 'hidden';
+
   return (
     <div className="form">
       <BackBtn />
@@ -114,6 +119,7 @@ const Form = () => {
         )}
       </div>
       <img className="form__logo" src={logo} alt="" />
+      {successPopup && <FormSuccessPopup setVisible={setSuccessPopup} />}
     </div>
   );
 };
