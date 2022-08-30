@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { triggerOnEnter } from '../utils';
-import imgMissing from '../images/imgMissing.svg';
+import { triggerOnEnter } from '../../utils';
+import imgMissing from '../../images/imgMissing.svg';
 
 const FileInput = ({ value, setValue, alert, setAlert, name }) => {
   const [dragging, setDragging] = useState(false);

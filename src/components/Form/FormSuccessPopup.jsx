@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import successIcon from '../images/success.svg';
+import successIcon from '../../images/success.svg';
 
 const FormSuccessPopup = () => {
   return (

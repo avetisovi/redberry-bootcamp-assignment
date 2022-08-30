@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import InputWithLabelAndHint from './UI/InputWithLabelAndHint/InputWithLabelAndHint';
-import Dropdown from './UI/RegularDropdown/Dropdown';
-import { isObjectEmpty } from '../utils';
-
-import { fetchOptions } from '../utils';
+import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import Dropdown from '../../UI/RegularDropdown/Dropdown';
+import CoworkerInfoTop from './CoworkerInfoTop';
+import { isObjectEmpty, fetchOptions } from '../../../utils';
 
 const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
@@ -42,26 +41,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
 
   return (
     <form className="coworker-info" onSubmit={handleSubmit}>
-      <div className="coworker-info__top">
-        <InputWithLabelAndHint
-          label="სახელი"
-          hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
-          placeholder="გრიშა"
-          validation={{ pattern: '[ა-ჰ]{2,}' }}
-          value={values.firstName}
-          onChange={setValues.setFirstName}
-          name="name"
-        />
-        <InputWithLabelAndHint
-          label="გვარი"
-          hint="მინიმუმ 2 სიმბოლო, ქართული ასოები"
-          placeholder="ბაგრატიონი"
-          validation={{ pattern: '[ა-ჰ]{2,}' }}
-          value={values.lastName}
-          onChange={setValues.setLastName}
-          name="surname"
-        />
-      </div>
+      <CoworkerInfoTop {...{ values, setValues }} />
       <Dropdown
         placeholder="თიმი"
         options={teamOptions}
