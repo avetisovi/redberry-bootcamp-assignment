@@ -20,6 +20,7 @@ const RegularRadioInput = ({ title, name, options, setValue, value }) => {
               required
               onChange={(e) => handleChange(e, opt)}
               checked={value === opt.id}
+              value={opt.id}
             />
             <label className={cl.label} htmlFor={opt.id}>
               {opt.label}

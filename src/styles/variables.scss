@@ -20,4 +20,8 @@ $btnBg-dark: #1a5dab;
   &:hover {
     background-color: $btnBg-regular;
   }
+
+  &:focus {
+    background-color: $btnBg-dark;
+  }
 }

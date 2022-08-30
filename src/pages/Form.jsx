@@ -3,10 +3,14 @@ import CoworkerInfo from '../components/CoworkerInfo';
 import LaptopInfo from '../components/LaptopInfo';
 import FormHeader from '../components/FormHeader';
 import BackBtn from '../components/BackBtn';
+import axios from 'axios';
 
 import logo from '../images/form-logo.png';
+import { objToFormData } from '../utils';
 
 const Form = () => {
+  const [coworkerData, setCoworkerData] = useState();
+  const [laptopData, setLaptopData] = useState();
   // form steps
 
   const [step, setStep] = useState(1);
@@ -80,7 +84,15 @@ const Form = () => {
     setLaptopCondition
   };
 
-  const handleConfirmation = () => {};
+  const handleConfirmation = () => {
+    const fullData = {
+      ...Object.fromEntries(coworkerData),
+      ...Object.fromEntries(laptopData),
+      token: 'ab09d65821320a72cc4969433abaaebf'
+    };
+
+    const formData = objToFormData(fullData);
+  };
 
   return (
     <div className="form">
@@ -88,10 +100,16 @@ const Form = () => {
       <FormHeader step={step} />
       <div className="form__container">
         {step === 1 ? (
-          <CoworkerInfo {...{ values, setValues, nextStep }} />
+          <CoworkerInfo {...{ values, setValues, nextStep, setCoworkerData }} />
         ) : (
           <LaptopInfo
-            {...{ values, setValues, prevStep, handleConfirmation }}
+            {...{
+              values,
+              setValues,
+              prevStep,
+              handleConfirmation,
+              setLaptopData
+            }}
           />
         )}
       </div>

@@ -11,10 +11,9 @@ const DateInput = ({ label, name, setValue, value, placeholder }) => {
         onChange={(e) => setValue(e.target.value)}
         id={name}
         className={cl.input}
-        onFocus={(e) => {
-          e.target.type = 'date';
-        }}
-        {...{ value, placeholder }}
+        onFocus={(e) => (e.target.type = 'date')}
+        onBlur={(e) => (e.target.type = 'text')}
+        {...{ value, placeholder, name }}
       />
     </div>
   );

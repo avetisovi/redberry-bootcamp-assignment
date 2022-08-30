@@ -5,7 +5,7 @@ import { isObjectEmpty } from '../utils';
 
 import { fetchOptions } from '../utils';
 
-const CoworkerInfo = ({ nextStep, values, setValues }) => {
+const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
   const [posOptions, setPosOptions] = useState([]);
   const [teamDropdownAlert, setTeamDropdownAlert] = useState(false);
@@ -30,6 +30,12 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
     } else {
       setTeamDropdownAlert(false);
       setPosDropdownAlert(false);
+
+      const data = new FormData(e.target);
+      data.append('team_id', values.team.id);
+      data.append('position_id', values.position.id);
+      console.log(values.laptopImg);
+      setCoworkerData(data);
       nextStep();
     }
   };
@@ -44,7 +50,7 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
           validation={{ pattern: '[ა-ჰ]{2,}' }}
           value={values.firstName}
           onChange={setValues.setFirstName}
-          name="firstName"
+          name="name"
         />
         <InputWithLabelAndHint
           label="გვარი"
@@ -53,7 +59,7 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
           validation={{ pattern: '[ა-ჰ]{2,}' }}
           value={values.lastName}
           onChange={setValues.setLastName}
-          name="lastName"
+          name="surname"
         />
       </div>
       <Dropdown
@@ -81,6 +87,7 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
         value={values.email}
         onChange={setValues.setEmail}
         type="email"
+        name="email"
       />
       <InputWithLabelAndHint
         label="ტელეფონის ნომერი"
@@ -90,6 +97,7 @@ const CoworkerInfo = ({ nextStep, values, setValues }) => {
         value={values.phoneNumber}
         onChange={setValues.setPhoneNumber}
         type="tel"
+        name="phone_number"
       />
       <button className="coworker-info__btn">შემდეგი</button>
     </form>

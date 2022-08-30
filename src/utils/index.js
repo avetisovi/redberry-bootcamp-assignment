@@ -1,7 +1,11 @@
 export const fetchOptions = async (url) => {
-  const request = await fetch(url);
-  const response = await request.json();
-  return response.data;
+  try {
+    const request = await fetch(url);
+    const response = await request.json();
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export const isObjectEmpty = (obj) => {
@@ -13,22 +17,19 @@ export const triggerOnEnter = (e) => {
   e.target.click();
 };
 
-export const blobToUint8Array = (b) => {
-  const uri = URL.createObjectURL(b);
-  const xhr = new XMLHttpRequest();
-  let i;
-  let ui8;
+export const objToFormData = (obj) => {
+  return Object.entries(obj).reduce(
+    (d, e) => (d.append(...e), d),
+    new FormData()
+  );
+};
 
-  xhr.open('GET', uri, false);
-  xhr.send();
+export const blobToBinaryString = async (blob) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(blob);
 
-  URL.revokeObjectURL(uri);
-
-  ui8 = new Uint8Array(xhr.response.length);
-
-  for (i = 0; i < xhr.response.length; ++i) {
-    ui8[i] = xhr.response.charCodeAt(i);
+  while (reader.readyState !== 2) {
+    await new Promise((resolve) => setTimeout(resolve, 100));
   }
-
-  return ui8;
+  return reader.result;
 };

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { triggerOnEnter } from '../utils';
 import imgMissing from '../images/imgMissing.svg';
 
-const FileInput = ({ value, setValue, alert, setAlert }) => {
+const FileInput = ({ value, setValue, alert, setAlert, name }) => {
   const [dragging, setDragging] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(value ? URL.createObjectURL(value) : null);
 
   const wrapperClasses = () => {
     let initialClass = 'file-drop';
@@ -49,9 +49,9 @@ const FileInput = ({ value, setValue, alert, setAlert }) => {
       const newFile = e.dataTransfer.files[0];
       newFile.arrayBuffer().then((buf) => {
         const blob = new Blob([buf], { type: 'image/png' });
+        setValue(blob);
         setImage(URL.createObjectURL(blob));
       });
-      setValue(newFile);
       e.dataTransfer.clearData();
       dragCounter = 0;
       setAlert(false);
@@ -63,9 +63,9 @@ const FileInput = ({ value, setValue, alert, setAlert }) => {
     if (newFile) {
       newFile.arrayBuffer().then((buf) => {
         const blob = new Blob([buf], { type: 'image/png' });
+        setValue(blob);
         setImage(URL.createObjectURL(blob));
       });
-      setValue(newFile);
       setAlert(false);
     }
   };
@@ -96,14 +96,14 @@ const FileInput = ({ value, setValue, alert, setAlert }) => {
     >
       <img className="imgInputAlert" src={imgMissing} alt="" />
       <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
-      <label htmlFor="file-input" tabIndex="0" onKeyPress={triggerOnEnter}>
+      <label htmlFor={name} tabIndex="0" onKeyPress={triggerOnEnter}>
         ატვირთე
         <input
-          id="file-input"
+          id={name}
           type="file"
           value=""
           onChange={onFileDrop}
-          name="file-input"
+          name={name}
           tabIndex="-1"
         />
       </label>

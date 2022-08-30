@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOptions, isObjectEmpty } from '../utils';
+import { fetchOptions, isObjectEmpty, blobToBinaryString } from '../utils';
 import FileInput from './FileInput';
 import DateInput from './UI/DateInput/DateInput';
 import InputWithLabelAndHint from './UI/InputWithLabelAndHint/InputWithLabelAndHint';
@@ -7,7 +7,13 @@ import Dropdown from './UI/RegularDropdown/Dropdown';
 import RegularRadioInput from './UI/RegularRadioInput/RegularRadioInput';
 import gelImg from '../images/gel.svg';
 
-const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
+const LaptopInfo = ({
+  prevStep,
+  handleConfirmation,
+  values,
+  setValues,
+  setLaptopData
+}) => {
   const [brandOptions, setBrandOptions] = useState([]);
   const [cpuOptions, setCpuOptions] = useState([]);
 
@@ -25,7 +31,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
     });
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!values.laptopImg) {
       setImgAlert(true);
@@ -36,6 +42,16 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
     } else if (isObjectEmpty(values.cpu)) {
       setCpuDropdownAlert(true);
       window.scrollTo(0, 0);
+    } else {
+      const binaryImg = await blobToBinaryString(values.laptopImg);
+
+      const data = new FormData(e.target);
+      data.append('laptop_brand_id', values.laptopBrand.id);
+      data.append('laptop_cpu', values.cpu.name);
+      data.append('laptop_image', binaryImg);
+
+      setLaptopData(data);
+      handleConfirmation();
     }
   };
 
@@ -46,6 +62,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
         setValue={setValues.setLaptopImg}
         alert={imgAlert}
         setAlert={setImgAlert}
+        name="laptop_image"
       />
       <div className="laptop-model">
         <InputWithLabelAndHint
@@ -57,7 +74,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
           }}
           value={values.laptopName}
           onChange={setValues.setLaptopName}
-          name="laptopName"
+          name="laptop_name"
         />
         <Dropdown
           placeholder="ლეპტოპის ბრენდი"
@@ -86,7 +103,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
           validation={{ min: 1, pattern: '[0-9]' }}
           value={values.cpuCore}
           onChange={setValues.setCpuCore}
-          name="cpuCore"
+          name="laptop_cpu_cores"
         />
         <InputWithLabelAndHint
           label="CPU-ს ნაკადი"
@@ -96,7 +113,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
           validation={{ min: 1, pattern: '[0-9]' }}
           value={values.cpuThread}
           onChange={setValues.setCpuThread}
-          name="cpuThread"
+          name="laptop_cpu_threads"
         />
       </div>
       <div className="laptop-memory">
@@ -108,14 +125,14 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
           validation={{ min: 1, pattern: '[0-9]' }}
           value={values.ram}
           onChange={setValues.setRam}
-          name="ram"
+          name="laptop_ram"
         />
         <RegularRadioInput
           title="მეხსიერების ტიპი"
-          name="mem-type"
+          name="laptop_hard_drive_type"
           options={[
-            { id: 'ssd', label: 'SSD' },
-            { id: 'hdd', label: 'HDD' }
+            { id: 'SSD', label: 'SSD' },
+            { id: 'HDD', label: 'HDD' }
           ]}
           setValue={setValues.setMemoryType}
           value={values.memoryType}
@@ -129,7 +146,7 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
           type="date"
           value={values.purchaseDate}
           setValue={setValues.setPurchaseDate}
-          name="purchaseDate"
+          name="laptop_purchase_date"
         />
         <InputWithLabelAndHint
           label="ლეპტოპის ფასი"
@@ -140,15 +157,15 @@ const LaptopInfo = ({ prevStep, handleConfirmation, values, setValues }) => {
           validation={{ min: 1, pattern: '[0-9]' }}
           value={values.price}
           onChange={setValues.setPrice}
-          name="cpuCore"
+          name="laptop_price"
         />
       </div>
       <RegularRadioInput
         title="ლეპტოპის მდგომარეობა"
-        name="laptop-condition"
+        name="laptop_state"
         options={[
           { id: 'new', label: 'ახალი' },
-          { id: 'secondHand', label: 'მეორადი' }
+          { id: 'used', label: 'მეორადი' }
         ]}
         setValue={setValues.setLaptopCondition}
         value={values.laptopCondition}
