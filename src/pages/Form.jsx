@@ -36,6 +36,8 @@ const Form = () => {
 
   // Laptop information
   const [laptopImg, setLaptopImg] = useState(null);
+  const [laptopImgName, setLaptopImgName] = useState('');
+  const [laptopImgSize, setLaptopImgSize] = useState('');
   const [laptopName, setLaptopName] = useState('');
   const [laptopBrand, setLaptopBrand] = useState({});
   const [cpu, setCpu] = useState({});
@@ -55,6 +57,8 @@ const Form = () => {
     email,
     phoneNumber,
     laptopImg,
+    laptopImgName,
+    laptopImgSize,
     laptopName,
     laptopBrand,
     cpu,
@@ -75,6 +79,8 @@ const Form = () => {
     setEmail,
     setPhoneNumber,
     setLaptopImg,
+    setLaptopImgName,
+    setLaptopImgSize,
     setLaptopName,
     setLaptopBrand,
     setCpu,

@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { triggerOnEnter } from '../../utils';
 import imgMissing from '../../images/imgMissing.svg';
+import imgUpload from '../../images/imgUpload.svg';
+import tickIcon from '../../images/tick.svg';
 
-const FileInput = ({ value, setValue, alert, setAlert, name }) => {
+const FileInput = ({
+  value,
+  setValue,
+  alert,
+  setAlert,
+  name,
+  imgName,
+  setImgName,
+  imgSize,
+  setImgSize
+}) => {
   const [dragging, setDragging] = useState(false);
   const [image, setImage] = useState(value ? URL.createObjectURL(value) : null);
 
@@ -61,6 +73,12 @@ const FileInput = ({ value, setValue, alert, setAlert, name }) => {
   const onFileDrop = (e) => {
     const newFile = e.target.files[0];
     if (newFile) {
+      if (newFile.size / 1000000 > 1) {
+        setImgSize(`${Math.round(newFile.size / 1000000)} mb`);
+      } else if (newFile.size / 1000000 < 1) {
+        setImgSize(`${Math.round(newFile.size / 1000)} kb`);
+      }
+      setImgName(newFile.name);
       newFile.arrayBuffer().then((buf) => {
         const blob = new Blob([buf], { type: 'image/png' });
         setValue(blob);
@@ -77,10 +95,27 @@ const FileInput = ({ value, setValue, alert, setAlert, name }) => {
 
   if (value) {
     return (
-      <div className="file-drop">
-        <img className="file-drop__img" src={image} alt="laptop" />
-        <div onClick={fileRemove} className="file-drop__overlay">
-          წაშლა
+      <div className="file-drop__uploaded">
+        <div className="file-drop">
+          <img className="file-drop__img" src={image} alt="laptop" />
+        </div>
+        <div className="file-drop__img-options">
+          <div className="file-drop__img-stats">
+            <img src={tickIcon} alt="uploaded" />
+            <h3 className="file-drop__img-name">{imgName},</h3>
+            <p className="file-drop__img-size">{imgSize}</p>
+          </div>
+          <label htmlFor={name} tabIndex="0" onKeyPress={triggerOnEnter}>
+            თავიდან ატვირთვა
+            <input
+              id={name}
+              type="file"
+              value=""
+              onChange={onFileDrop}
+              name={name}
+              tabIndex="-1"
+            />
+          </label>
         </div>
       </div>
     );
@@ -94,19 +129,36 @@ const FileInput = ({ value, setValue, alert, setAlert, name }) => {
       onDragOver={handleDrag}
       onDrop={handleDrop}
     >
-      <img className="imgInputAlert" src={imgMissing} alt="" />
-      <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
-      <label htmlFor={name} tabIndex="0" onKeyPress={triggerOnEnter}>
-        ატვირთე
-        <input
-          id={name}
-          type="file"
-          value=""
-          onChange={onFileDrop}
-          name={name}
-          tabIndex="-1"
-        />
-      </label>
+      <div className="bigScreen">
+        <img className="imgInputAlert" src={imgMissing} alt="" />
+        <p>ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
+        <label htmlFor={name} tabIndex="0" onKeyPress={triggerOnEnter}>
+          ატვირთე
+          <input
+            id={name}
+            type="file"
+            value=""
+            onChange={onFileDrop}
+            name={name}
+            tabIndex="-1"
+          />
+        </label>
+      </div>
+      <div className="smallScreen">
+        <label htmlFor={name} tabIndex="0" onKeyPress={triggerOnEnter}>
+          <img src={imgUpload} alt="" />
+          <p>ლეპტოპის ფოტოს ატვირთვა</p>
+          <input
+            id={name}
+            type="file"
+            value=""
+            onChange={onFileDrop}
+            name={name}
+            tabIndex="-1"
+          />
+          <img className="imgInputAlert" src={imgMissing} alt="" />
+        </label>
+      </div>
     </div>
   );
 };

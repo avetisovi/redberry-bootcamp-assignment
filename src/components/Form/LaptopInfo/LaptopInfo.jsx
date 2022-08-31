@@ -67,6 +67,10 @@ const LaptopInfo = ({
       <FileInput
         value={values.laptopImg}
         setValue={setValues.setLaptopImg}
+        imgName={values.laptopImgName}
+        setImgName={setValues.setLaptopImgName}
+        imgSize={values.laptopImgSize}
+        setImgSize={setValues.setLaptopImgSize}
         alert={imgAlert}
         setAlert={setImgAlert}
         name="laptop_image"
