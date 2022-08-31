@@ -34,3 +34,16 @@
   height: 20px;
   accent-color: #4d9ac3;
 }
+
+.alert .title {
+  color: #e52f2f;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.alert .title img {
+  width: 22px;
+  height: 20px;
+}

@@ -71,6 +71,7 @@ const FileInput = ({
   };
 
   const onFileDrop = (e) => {
+    fileRemove();
     const newFile = e.target.files[0];
     if (newFile) {
       if (newFile.size / 1000000 > 1) {

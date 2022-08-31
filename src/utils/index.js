@@ -26,7 +26,7 @@ export const objToFormData = (obj) => {
 
 export const blobToBinaryString = async (blob) => {
   const reader = new FileReader();
-  reader.readAsDataURL(blob);
+  reader.readAsBinaryString(blob);
 
   while (reader.readyState !== 2) {
     await new Promise((resolve) => setTimeout(resolve, 100));

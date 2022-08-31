@@ -2,7 +2,7 @@ import React from 'react';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
-const LaptopMemory = ({ values, setValues }) => {
+const LaptopMemory = ({ values, setValues, memoryAlert, setMemoryAlert }) => {
   return (
     <div className="laptop-memory form__two-elems">
       <InputWithLabelAndHint
@@ -24,6 +24,8 @@ const LaptopMemory = ({ values, setValues }) => {
         ]}
         setValue={setValues.setMemoryType}
         value={values.memoryType}
+        alert={memoryAlert}
+        setAlert={setMemoryAlert}
       />
     </div>
   );

@@ -5,8 +5,6 @@ import {
   blobToBinaryString
 } from '../../../utils';
 import FileInput from '../FileInput';
-import DateInput from '../../UI/DateInput/DateInput';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
 import LaptopModel from './LaptopModel';
@@ -27,6 +25,8 @@ const LaptopInfo = ({
   const [imgAlert, setImgAlert] = useState(false);
   const [brandDropdownAlert, setBrandDropdownAlert] = useState(false);
   const [cpuDropdownAlert, setCpuDropdownAlert] = useState(false);
+  const [memoryAlert, setMemoryAlert] = useState(false);
+  const [conditionAlert, setConditionAlert] = useState(false);
 
   useEffect(() => {
     fetchOptions('https://pcfy.redberryinternship.ge/api/brands').then((res) =>
@@ -49,6 +49,10 @@ const LaptopInfo = ({
     } else if (isObjectEmpty(values.cpu)) {
       setCpuDropdownAlert(true);
       window.scrollTo(0, 0);
+    } else if (!values.memoryType) {
+      setMemoryAlert(true);
+    } else if (!values.laptopCondition) {
+      setConditionAlert(true);
     } else {
       const binaryImg = await blobToBinaryString(values.laptopImg);
 
@@ -57,7 +61,7 @@ const LaptopInfo = ({
       data.append('laptop_cpu', values.cpu.name);
       data.append('laptop_image', binaryImg);
 
-      setLaptopData(data);
+      await setLaptopData(data);
       handleConfirmation();
     }
   };
@@ -94,7 +98,7 @@ const LaptopInfo = ({
           setCpuDropdownAlert
         }}
       />
-      <LaptopMemory {...{ values, setValues }} />
+      <LaptopMemory {...{ values, setValues, memoryAlert, setMemoryAlert }} />
       <div className="laptop-section__break"></div>
       <LaptopPurchase {...{ values, setValues }} />
 
@@ -107,6 +111,8 @@ const LaptopInfo = ({
         ]}
         setValue={setValues.setLaptopCondition}
         value={values.laptopCondition}
+        setAlert={setConditionAlert}
+        alert={conditionAlert}
       />
       <div className="laptop-info__buttons">
         <button

@@ -1,14 +1,28 @@
 import React from 'react';
 
 import cl from './RegularRadioInput.module.css';
+import alertImg from '../../../images/imgMissing.svg';
 
-const RegularRadioInput = ({ title, name, options, setValue, value }) => {
+const RegularRadioInput = ({
+  title,
+  name,
+  options,
+  setValue,
+  value,
+  setAlert,
+  alert
+}) => {
   const handleChange = (e, opt) => {
     setValue(opt.id);
+    setAlert(false);
   };
+
   return (
-    <div className={cl.wrapper}>
-      <p className={cl.title}>{title}</p>
+    <div className={alert ? `${cl.wrapper} ${cl.alert}` : cl.wrapper}>
+      <p className={cl.title}>
+        <span>{title}</span>
+        {alert && <img src={alertImg} alt="fill this blank" />}
+      </p>
       <ul className={cl.list}>
         {options.map((opt) => (
           <li className={cl.listItem} key={opt.id}>
@@ -17,7 +31,6 @@ const RegularRadioInput = ({ title, name, options, setValue, value }) => {
               type="radio"
               id={opt.id}
               name={name}
-              required
               onChange={(e) => handleChange(e, opt)}
               checked={value === opt.id}
               value={opt.id}
