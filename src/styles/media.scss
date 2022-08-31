@@ -1,9 +1,112 @@
+@media (max-width: 1336px) {
+  .form__container {
+    width: 920px;
+    padding: 40px 100px;
+  }
+  .coworker-info__top {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .back-btn {
+    top: 35px;
+    left: 20px;
+    background-color: transparent;
+  }
+
+  .form {
+    padding: 45px 0 0;
+    &__header-steps::after {
+      display: none;
+    }
+    &__header-step {
+      display: none;
+    }
+    &__header-steps.one .first {
+      display: block;
+    }
+    &__header-steps.two .second {
+      display: block;
+    }
+    &__container {
+      padding: 40px 50px 50px;
+      width: 100%;
+    }
+    &__logo {
+      display: none;
+    }
+  }
+  .step__counter {
+    display: block;
+  }
+  .laptop-section__break {
+    height: 10px;
+    margin: 0 -50px;
+    width: auto;
+    background: #f7f7f7;
+  }
+}
+
 @media (max-width: 810px) {
   .landing-logo {
     margin-bottom: 117px;
   }
   .landing-img {
     width: 270px;
+  }
+  .coworker-info {
+    gap: 25px;
+  }
+  .form__two-elems {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+  .laptop-cpu {
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+  .file-drop {
+    height: 300px;
+  }
+  .bigScreen {
+    gap: 20px;
+  }
+  .file-drop.alert p {
+    margin: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .file-drop {
+    &::before {
+      z-index: -1;
+    }
+    .bigScreen {
+      display: none;
+    }
+    .smallScreen {
+      display: block;
+    }
+    &__img-stats {
+      display: grid;
+      grid-template-areas: 'img name' 'img size';
+      img {
+        grid-area: img;
+        margin-right: 10px;
+      }
+    }
+    &__img-name {
+      grid-area: name;
+      margin-right: 0;
+    }
+    &__img-size {
+      grid-area: size;
+    }
+    &__img-options label {
+      width: auto;
+      padding: 12px 10px;
+    }
   }
 }
 
@@ -13,5 +116,67 @@
   }
   .landing-link {
     width: 100%;
+  }
+
+  .back-btn {
+    padding: 5px;
+
+    width: auto;
+    height: auto;
+
+    top: 30px;
+    left: 15px;
+  }
+
+  .form {
+    padding: 30px 0 0;
+    &__header {
+      padding: 0 15px 10px;
+    }
+    &__header-step {
+      font-size: 16px;
+      line-height: 20px;
+    }
+    &__container {
+      padding: 40px 15px 60px;
+    }
+  }
+  .file-drop {
+    height: 245px;
+    .smallScreen label {
+      img {
+        width: 45px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 26px;
+      }
+      .imgInputAlert {
+        width: 23px;
+        height: 21px;
+      }
+    }
+    &__img-name {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    &__img-size {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+
+  .file-drop__img-options label,
+  .coworker-info__btn,
+  .laptop-info__submit-btn {
+    font-size: 18px;
+    line-height: 22px;
+    padding: 12px 10px;
+  }
+
+  .step__counter {
+    font-size: 14px;
+    line-height: 17px;
   }
 }

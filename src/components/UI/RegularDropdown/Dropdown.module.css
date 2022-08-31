@@ -65,3 +65,9 @@
 .option:hover {
   background: #e7f0f8;
 }
+
+@media (max-width: 810px) {
+  .wrapper {
+    margin-bottom: 20px;
+  }
+}
