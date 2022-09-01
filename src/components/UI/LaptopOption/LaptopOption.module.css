@@ -1,0 +1,37 @@
+.laptopOption {
+  display: flex;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.laptopOption:last-child {
+  margin-bottom: 0;
+}
+
+.laptopOption.secondColumn .laptopOptionTitle {
+  width: 230px;
+}
+
+.laptopOption.firstColumn .laptopOptionTitle {
+  width: 300px;
+}
+
+.laptopOptionTitle {
+  margin: 0;
+
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+
+  color: #2e2e2e;
+}
+
+.laptopOptionDesc {
+  margin: 0;
+
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+
+  color: #797979;
+}

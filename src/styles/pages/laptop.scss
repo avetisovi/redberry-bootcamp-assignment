@@ -1,5 +1,5 @@
-.laptops {
-  padding: 80px 0 168px;
+.laptop {
+  padding: 75px 0 145px;
   .container {
     max-width: 1218px;
     margin: 0 auto;
@@ -13,6 +13,24 @@
 
     margin: 0 0 95px;
   }
+  &__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 68px;
+    align-items: center;
+  }
+  &__stats-rowBorder {
+    border-top: 2px solid gray;
+    grid-column: 1 / 3;
+  }
+  &__img {
+    width: 577px;
+    height: 342px;
+    object-fit: cover;
+  }
+}
+
+.laptops {
   &__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
