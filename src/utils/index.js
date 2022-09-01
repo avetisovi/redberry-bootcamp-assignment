@@ -23,13 +23,3 @@ export const objToFormData = (obj) => {
     new FormData()
   );
 };
-
-export const blobToBinaryString = async (blob) => {
-  const reader = new FileReader();
-  reader.readAsBinaryString(blob);
-
-  while (reader.readyState !== 2) {
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-  return reader.result;
-};

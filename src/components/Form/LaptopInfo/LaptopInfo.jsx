@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  fetchOptions,
-  isObjectEmpty,
-  blobToBinaryString
-} from '../../../utils';
+import { fetchOptions, isObjectEmpty } from '../../../utils';
 import FileInput from '../FileInput';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
@@ -38,7 +34,7 @@ const LaptopInfo = ({
     });
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!values.laptopImg) {
       setImgAlert(true);
@@ -54,15 +50,13 @@ const LaptopInfo = ({
     } else if (!values.laptopCondition) {
       setConditionAlert(true);
     } else {
-      const binaryImg = await blobToBinaryString(values.laptopImg);
-
       const data = new FormData(e.target);
       data.append('laptop_brand_id', values.laptopBrand.id);
       data.append('laptop_cpu', values.cpu.name);
-      data.append('laptop_image', binaryImg);
+      data.append('laptop_image', values.laptopImg);
 
-      await setLaptopData(data);
-      handleConfirmation();
+      setLaptopData(data);
+      handleConfirmation(data);
     }
   };
 

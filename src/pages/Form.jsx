@@ -93,7 +93,7 @@ const Form = () => {
     setLaptopCondition
   };
 
-  const handleConfirmation = () => {
+  const handleConfirmation = (laptopData) => {
     const fullData = {
       ...Object.fromEntries(coworkerData),
       ...Object.fromEntries(laptopData),
@@ -101,6 +101,20 @@ const Form = () => {
     };
 
     const formData = objToFormData(fullData);
+
+    const requestOptions = {
+      method: 'POST',
+      body: formData,
+      redirect: 'follow'
+    };
+
+    fetch(
+      'https://pcfy.redberryinternship.ge/api/laptop/create',
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
   };
 
   if (successPopup) document.querySelector('body').style.overflow = 'hidden';
