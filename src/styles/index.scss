@@ -2,11 +2,13 @@
 @import 'variables.scss';
 @import 'pages/landing.scss';
 @import 'pages/form.scss';
+@import 'pages/laptopsList.scss';
 
 @font-face {
   font-family: 'HelveticaNeue';
   src: local('HelveticaNeue'),
     url('../fonts/HelveticaNeue.ttc') format('truetype');
+  font-synthesis: normal;
 }
 
 * {

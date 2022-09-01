@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import Dropdown from '../../UI/RegularDropdown/Dropdown';
 import CoworkerInfoTop from './CoworkerInfoTop';
-import { isObjectEmpty, fetchOptions } from '../../../utils';
+import { isObjectEmpty, fetchData } from '../../../utils';
 
 const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
@@ -11,12 +11,12 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   const [posDropdownAlert, setPosDropdownAlert] = useState(false);
 
   useEffect(() => {
-    fetchOptions('https://pcfy.redberryinternship.ge/api/teams').then((res) =>
-      setTeamOptions(res)
+    fetchData('https://pcfy.redberryinternship.ge/api/teams').then(
+      setTeamOptions
     );
 
-    fetchOptions('https://pcfy.redberryinternship.ge/api/positions').then(
-      (res) => setPosOptions(res)
+    fetchData('https://pcfy.redberryinternship.ge/api/positions').then(
+      setPosOptions
     );
   }, []);
 

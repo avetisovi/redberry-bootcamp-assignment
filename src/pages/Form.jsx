@@ -115,6 +115,9 @@ const Form = () => {
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error));
+
+    window.scrollTo(0, 0);
+    setSuccessPopup(true);
   };
 
   if (successPopup) document.querySelector('body').style.overflow = 'hidden';

@@ -1,0 +1,62 @@
+.laptops {
+  padding: 80px 0 168px;
+  .container {
+    max-width: 1218px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  &__title {
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 21px;
+    text-align: center;
+
+    margin: 0 0 95px;
+  }
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  &__item {
+    background: #eafaff;
+    padding: 14px;
+
+    border: 1px solid #aed1ea;
+    border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  &__item-img {
+    width: 266px;
+    height: 178px;
+    object-fit: cover;
+
+    border-radius: 10px;
+  }
+  &__item-userName {
+    margin: 0 0 18px;
+
+    color: #2e2e2e;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+  }
+  &__item-laptopName {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #2e2e2e;
+
+    margin: 0 0 40px;
+  }
+  &__item-link {
+    color: #4386a9;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+  }
+}

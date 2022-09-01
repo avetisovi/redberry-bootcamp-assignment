@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchOptions, isObjectEmpty } from '../../../utils';
+import { fetchData, isObjectEmpty } from '../../../utils';
 import FileInput from '../FileInput';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
@@ -25,13 +25,13 @@ const LaptopInfo = ({
   const [conditionAlert, setConditionAlert] = useState(false);
 
   useEffect(() => {
-    fetchOptions('https://pcfy.redberryinternship.ge/api/brands').then((res) =>
-      setBrandOptions(res)
+    fetchData('https://pcfy.redberryinternship.ge/api/brands').then(
+      setBrandOptions
     );
 
-    fetchOptions('https://pcfy.redberryinternship.ge/api/cpus').then((res) => {
-      setCpuOptions(res);
-    });
+    fetchData('https://pcfy.redberryinternship.ge/api/cpus').then(
+      setCpuOptions
+    );
   }, []);
 
   const handleSubmit = (e) => {

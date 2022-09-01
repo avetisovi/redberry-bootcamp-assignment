@@ -19,7 +19,7 @@ const Landing = () => {
         <Link to="/form" className="landing-link">
           ჩანაწერის დამატება
         </Link>
-        <Link to="/" className="landing-link">
+        <Link to="/laptops" className="landing-link">
           ჩანაწერების სია
         </Link>
       </div>
