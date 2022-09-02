@@ -10,6 +10,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   const [teamDropdownAlert, setTeamDropdownAlert] = useState(false);
   const [posDropdownAlert, setPosDropdownAlert] = useState(false);
 
+  // fetching teams and options
   useEffect(() => {
     fetchData('https://pcfy.redberryinternship.ge/api/teams').then(
       setTeamOptions
@@ -20,20 +21,22 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
     );
   }, []);
 
+  // submitting form and going to next step
   const handleSubmit = (e) => {
     e.preventDefault();
+    // checking for validity
     if (isObjectEmpty(values.team)) {
       setTeamDropdownAlert(true);
     } else if (isObjectEmpty(values.position)) {
       setPosDropdownAlert(true);
     } else {
+      // save data and go to next step if data is valid
       setTeamDropdownAlert(false);
       setPosDropdownAlert(false);
 
       const data = new FormData(e.target);
       data.append('team_id', values.team.id);
       data.append('position_id', values.position.id);
-      console.log(values.laptopImg);
       setCoworkerData(data);
       nextStep();
     }
@@ -73,7 +76,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
         label="ტელეფონის ნომერი"
         hint="უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს"
         placeholder="+995 598 00 07 01"
-        validation={{ pattern: '^\\+995(\\s?[0-9]){9}' }}
+        validation={{ pattern: '^\\+995([0-9]){9}' }}
         value={values.phoneNumber}
         onChange={setValues.setPhoneNumber}
         type="tel"

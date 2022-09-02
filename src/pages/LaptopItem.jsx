@@ -10,7 +10,10 @@ import LaptopPurchase from '../components/Laptop/LaptopPurchase';
 import LaptopPurchaseDate from '../components/Laptop/LaptopPurchaseDate';
 
 const LaptopItem = () => {
+  // laptop id used to fetch laptop data
   const laptopId = useParams().id;
+
+  // empty laptop opbject
   const [laptop, setLaptop] = useState({
     user: {
       name: '',
@@ -29,14 +32,14 @@ const LaptopItem = () => {
       cpu: { cores: '', threads: '', name: '' }
     }
   });
+
+  // fetching laptop data and parsing it to laptop object
   useEffect(() => {
     fetchData(
       `https://pcfy.redberryinternship.ge/api/laptop/${laptopId}?token=ab09d65821320a72cc4969433abaaebf`
     ).then(setLaptop);
     fetchData('https://pcfy.redberryinternship.ge/api/');
   }, []);
-
-  console.log(laptop.user);
 
   return (
     <div className="laptop">

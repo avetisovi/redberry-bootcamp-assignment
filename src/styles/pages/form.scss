@@ -64,7 +64,8 @@
   line-height: 19px;
 }
 
-.invalid + p {
+.invalid ~ p,
+.invalid ~ label {
   color: #e52f2f;
 }
 

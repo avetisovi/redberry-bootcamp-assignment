@@ -4,24 +4,26 @@ import { fetchData } from '../../utils';
 import LaptopOption from '../UI/LaptopOption/LaptopOption';
 
 const LaptopProperties = ({ stats }) => {
-  const [formatedStats, setFormatedStats] = useState([]);
+  const [formattedStats, setFormattedStats] = useState([]);
   const [brands, setBrands] = useState([]);
 
-  // fetching teams and positions
+  // fetching brands
   useEffect(() => {
     fetchData('https://pcfy.redberryinternship.ge/api/brands').then(setBrands);
   }, []);
 
-  // setting formated data
+  // waiting stats to fetch to format data
   useEffect(() => {
     let brand = '';
 
+    // setting brand name
     if (stats.brand_id && brands.length) {
       const brandObj = brands.find((opt) => opt.id === stats.brand_id);
       brand = brandObj.name;
     }
 
-    setFormatedStats([
+    // setting formatted data
+    setFormattedStats([
       ['ლეპტოპის სახელი', stats.name],
       ['ლეპტოპის ბრენდი', brand],
       ['RAM', stats.ram],
@@ -33,7 +35,7 @@ const LaptopProperties = ({ stats }) => {
       className="laptop__properties
     "
     >
-      {formatedStats.map((stat) => (
+      {formattedStats.map((stat) => (
         <LaptopOption key={stat[0]} stat={stat} className="firstColumn" />
       ))}
     </div>

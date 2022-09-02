@@ -15,9 +15,9 @@ const Dropdown = ({
   const [currentChoiceName, setCurrentChoiceName] = useState(
     value?.name || placeholder
   );
-  const [currentChoice, setCurrentChoice] = useState(value);
   const [menuVisible, setMenuVisible] = useState(false);
 
+  // change styling when disabled or invalid
   const classes = () => {
     let initialClass = cl.wrapper;
     if (disabled) {
@@ -30,6 +30,7 @@ const Dropdown = ({
     return initialClass;
   };
 
+  // toggle list of choices
   const toggleMenu = (e) => {
     e.stopPropagation();
     if (!disabled) {
@@ -38,13 +39,13 @@ const Dropdown = ({
   };
 
   const changeChoice = (opt) => {
-    setCurrentChoice(opt);
     setCurrentChoiceName(opt.name);
     setValue(opt);
     setMenuVisible(false);
     setAlert(false);
   };
 
+  // hide list of choices when clicking on random spot
   document.querySelector('body').addEventListener('click', (e) => {
     setMenuVisible(false);
   });

@@ -13,7 +13,7 @@ const LaptopInfo = ({
   handleConfirmation,
   values,
   setValues,
-  setLaptopData
+  coworkerData
 }) => {
   const [brandOptions, setBrandOptions] = useState([]);
   const [cpuOptions, setCpuOptions] = useState([]);
@@ -24,6 +24,7 @@ const LaptopInfo = ({
   const [memoryAlert, setMemoryAlert] = useState(false);
   const [conditionAlert, setConditionAlert] = useState(false);
 
+  // fetching brands and cpu options
   useEffect(() => {
     fetchData('https://pcfy.redberryinternship.ge/api/brands').then(
       setBrandOptions
@@ -34,8 +35,10 @@ const LaptopInfo = ({
     );
   }, []);
 
+  // submitting form and sending post request
   const handleSubmit = (e) => {
     e.preventDefault();
+    // checking for validity
     if (!values.laptopImg) {
       setImgAlert(true);
       window.scrollTo(0, 0);
@@ -50,13 +53,13 @@ const LaptopInfo = ({
     } else if (!values.laptopCondition) {
       setConditionAlert(true);
     } else {
+      // send data if form is valid
       const data = new FormData(e.target);
       data.append('laptop_brand_id', values.laptopBrand.id);
       data.append('laptop_cpu', values.cpu.name);
       data.append('laptop_image', values.laptopImg);
 
-      setLaptopData(data);
-      handleConfirmation(data);
+      handleConfirmation(coworkerData, data);
     }
   };
 

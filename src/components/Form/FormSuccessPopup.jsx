@@ -9,11 +9,7 @@ const FormSuccessPopup = ({ setVisible }) => {
       <div className="success__popup">
         <img src={successIcon} alt="" className="success__popup-img" />
         <h3 className="success__popup-title">ჩანაწერი დამატებულია!</h3>
-        <Link
-          onClick={() => setVisible(false)}
-          className="success__popup-listLink"
-          to="/laptops"
-        >
+        <Link className="success__popup-listLink" to="/laptops">
           სიაში გადაყვანა
         </Link>
         <Link to="/" className="success__popup-landingLink">

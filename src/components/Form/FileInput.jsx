@@ -31,6 +31,7 @@ const FileInput = ({
 
   let dragCounter = 0;
 
+  // handling image dropping
   const handleDrag = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -57,29 +58,49 @@ const FileInput = ({
     e.preventDefault();
     e.stopPropagation();
     setDragging(false);
+    // if dragging file
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       const newFile = e.dataTransfer.files[0];
+      // settting image size
+      if (newFile.size / 1000000 > 1) {
+        setImgSize(`${Math.round(newFile.size / 1000000)} mb`);
+      } else if (newFile.size / 1000000 < 1) {
+        setImgSize(`${Math.round(newFile.size / 1000)} kb`);
+      }
+
+      // setting image name
+      setImgName(newFile.name);
+
+      // setting image
       newFile.arrayBuffer().then((buf) => {
         const blob = new Blob([buf], { type: 'image/png' });
         setValue(blob);
         setImage(URL.createObjectURL(blob));
       });
+
+      // clearing cache
       e.dataTransfer.clearData();
       dragCounter = 0;
       setAlert(false);
     }
   };
 
+  // uploading image from input
   const onFileDrop = (e) => {
     fileRemove();
     const newFile = e.target.files[0];
     if (newFile) {
+      // setting image size
       if (newFile.size / 1000000 > 1) {
         setImgSize(`${Math.round(newFile.size / 1000000)} mb`);
       } else if (newFile.size / 1000000 < 1) {
         setImgSize(`${Math.round(newFile.size / 1000)} kb`);
       }
+
+      // setting image name
       setImgName(newFile.name);
+
+      // setting image
       newFile.arrayBuffer().then((buf) => {
         const blob = new Blob([buf], { type: 'image/png' });
         setValue(blob);
@@ -94,6 +115,7 @@ const FileInput = ({
     setValue(null);
   };
 
+  // if image is uploaded
   if (value) {
     return (
       <div className="file-drop__uploaded">
@@ -122,6 +144,7 @@ const FileInput = ({
     );
   }
 
+  // if image is not uploaded
   return (
     <div
       className={wrapperClasses()}

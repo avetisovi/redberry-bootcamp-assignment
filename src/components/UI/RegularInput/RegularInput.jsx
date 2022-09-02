@@ -11,8 +11,10 @@ const RegularInput = ({
   validation,
   name
 }) => {
+  // if invalid is true change input styles
   const [invalid, setInvalid] = useState(false);
 
+  // set invalid to true if filled content does'nt match validation
   const checkForVaidity = (e) => {
     if (
       !e.target.validity.valid &&
@@ -40,11 +42,7 @@ const RegularInput = ({
         id={name}
         onBlur={checkForVaidity}
       />
-      {img ? (
-        <img className={cl.img} src={img} alt="" />
-      ) : (
-        <img className={cl.tick} src={tickIcon} alt="valid" />
-      )}
+      {img && <img className={cl.img} src={img} alt="" />}
     </div>
   );
 };

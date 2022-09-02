@@ -32,21 +32,6 @@
   color: rgba(0, 0, 0, 0.6);
 }
 
-.tick {
-  position: absolute;
-  top: 50%;
-  right: 18px;
-  transform: translateY(-50%);
-
-  width: 22px;
-  height: 22px;
-  display: none;
-}
-
-.input:valid:not(:focus):not(:placeholder-shown) + .tick {
-  display: block;
-}
-
 .img {
   position: absolute;
   top: 50%;

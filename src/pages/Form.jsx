@@ -10,12 +10,13 @@ import { objToFormData } from '../utils';
 import FormSuccessPopup from '../components/Form/FormSuccessPopup';
 
 const Form = () => {
+  // if true FormSuccessPopup is shown.
   const [successPopup, setSuccessPopup] = useState(false);
 
+  // coworker form data
   const [coworkerData, setCoworkerData] = useState();
-  const [laptopData, setLaptopData] = useState();
-  // form steps
 
+  // form steps
   const [step, setStep] = useState(1);
 
   const prevStep = () => {
@@ -93,21 +94,27 @@ const Form = () => {
     setLaptopCondition
   };
 
-  const handleConfirmation = (laptopData) => {
+  // sending all data to server
+  // ToDo: clear data after sending
+  const handleConfirmation = (coworkerData, laptopData) => {
+    // data as object
     const fullData = {
       ...Object.fromEntries(coworkerData),
       ...Object.fromEntries(laptopData),
       token: 'ab09d65821320a72cc4969433abaaebf'
     };
 
+    // data as FormData
     const formData = objToFormData(fullData);
 
+    // fetch request options
     const requestOptions = {
       method: 'POST',
       body: formData,
       redirect: 'follow'
     };
 
+    // fetch request
     fetch(
       'https://pcfy.redberryinternship.ge/api/laptop/create',
       requestOptions
@@ -116,10 +123,12 @@ const Form = () => {
       .then((result) => console.log(result))
       .catch((error) => console.log('error', error));
 
+    // showing FormSuccessPopup after sending data
     window.scrollTo(0, 0);
     setSuccessPopup(true);
   };
 
+  // disabling scroll when FormSuccessData is shown
   if (successPopup) document.querySelector('body').style.overflow = 'hidden';
 
   return (
@@ -136,7 +145,7 @@ const Form = () => {
               setValues,
               prevStep,
               handleConfirmation,
-              setLaptopData
+              coworkerData
             }}
           />
         )}

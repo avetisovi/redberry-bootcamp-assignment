@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import LaptopOption from '../UI/LaptopOption/LaptopOption';
 
 const LaptopPurchaseDate = ({ stat }) => {
-  const [formatedStat, setFormatedStat] = useState(['', '']);
+  const [formattedStat, setFormattedStat] = useState(['', '']);
 
+  // waiting stats to fetch to format data
   useEffect(() => {
+    // formatting purchase date
     if (stat) {
-      setFormatedStat(['შეძენის რიცხვი', stat.split('-').join(' / ')]);
+      setFormattedStat(['შეძენის რიცხვი', stat.split('-').join(' / ')]);
     } else {
-      setFormatedStat(['შეძენის რიცხვი', 'არ არის მითითებული']);
+      setFormattedStat(['შეძენის რიცხვი', 'არ არის მითითებული']);
     }
   }, [stat]);
   return (
     <div className="laptop__purchase">
-      <LaptopOption stat={formatedStat} className="secondColumn" />
+      <LaptopOption stat={formattedStat} className="secondColumn" />
     </div>
   );
 };

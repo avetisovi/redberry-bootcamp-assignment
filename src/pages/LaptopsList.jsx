@@ -5,6 +5,8 @@ import { fetchData } from '../utils';
 
 const LaptopsList = () => {
   const [laptops, setLaptops] = useState([]);
+
+  // fetching laptops list and then parsing it to laptops array
   useEffect(() => {
     fetchData(
       'https://pcfy.redberryinternship.ge/api/laptops?token=ab09d65821320a72cc4969433abaaebf'

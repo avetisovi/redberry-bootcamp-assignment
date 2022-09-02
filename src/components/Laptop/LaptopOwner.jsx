@@ -3,7 +3,7 @@ import { fetchData } from '../../utils';
 import LaptopOption from '../UI/LaptopOption/LaptopOption';
 
 const LaptopOwner = ({ stats }) => {
-  const [formatedStats, setFormatedStats] = useState([]);
+  const [formattedStats, setFormattedStats] = useState([]);
   const [teams, setTeams] = useState([]);
   const [positions, setPositions] = useState([]);
 
@@ -15,13 +15,14 @@ const LaptopOwner = ({ stats }) => {
     );
   }, []);
 
-  // setting formated data
+  // waiting stats to fetch to format data
   useEffect(() => {
     let team = '';
     let position = '';
-    let formatedPhone = '';
+    let formattedPhone = '';
 
-    formatedPhone = `${stats.phone_number.substring(
+    // formatting phone number
+    formattedPhone = `${stats.phone_number.substring(
       0,
       4
     )} ${stats.phone_number.substring(4, 7)} ${stats.phone_number.substring(
@@ -31,27 +32,31 @@ const LaptopOwner = ({ stats }) => {
       11
     )}`;
 
+    // setting team name
     if (stats.team_id && teams.length) {
       const teamObj = teams.find((opt) => opt.id === stats.team_id);
       team = teamObj.name;
     }
 
+    // setting position name
     if (stats.position_id && teams.length) {
       const positionObj = positions.find((opt) => opt.id === stats.position_id);
       position = positionObj.name;
     }
 
-    setFormatedStats([
+    // setting formatted data
+    setFormattedStats([
       ['სახელი', `${stats.name} ${stats.surname}`],
       ['თიმი', team],
       ['პოზიცია', position],
       ['მეილი', stats.email],
-      ['ტელ. ნომერი', formatedPhone]
+      ['ტელ. ნომერი', formattedPhone]
     ]);
   }, [stats]);
+
   return (
     <div className="laptop__owner">
-      {formatedStats.map((stat) => (
+      {formattedStats.map((stat) => (
         <LaptopOption key={stat[0]} stat={stat} className="secondColumn" />
       ))}
     </div>
