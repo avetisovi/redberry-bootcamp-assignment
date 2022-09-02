@@ -3,7 +3,6 @@ import CoworkerInfo from '../components/Form/CoworkerInfo/CoworkerInfo';
 import LaptopInfo from '../components/Form/LaptopInfo/LaptopInfo';
 import FormHeader from '../components/Form/FormHeader';
 import BackBtn from '../components/BackBtn';
-import axios from 'axios';
 
 import logo from '../images/form-logo.png';
 import { objToFormData } from '../utils';
