@@ -119,7 +119,13 @@ const FileInput = ({
   if (value) {
     return (
       <div className="file-drop__uploaded">
-        <div className="file-drop">
+        <div
+          className="file-drop"
+          onDragEnter={handleDragIn}
+          onDragLeave={handleDragOut}
+          onDragOver={handleDrag}
+          onDrop={handleDrop}
+        >
           <img className="file-drop__img" src={image} alt="laptop" />
         </div>
         <div className="file-drop__img-options">
