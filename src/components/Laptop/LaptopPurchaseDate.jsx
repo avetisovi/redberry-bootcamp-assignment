@@ -8,7 +8,7 @@ const LaptopPurchaseDate = ({ stat }) => {
     if (stat) {
       setFormatedStat(['შეძენის რიცხვი', stat.split('-').join(' / ')]);
     } else {
-      setFormatedStat(['შეძენის რიცხვი', '']);
+      setFormatedStat(['შეძენის რიცხვი', 'არ არის მითითებული']);
     }
   }, [stat]);
   return (

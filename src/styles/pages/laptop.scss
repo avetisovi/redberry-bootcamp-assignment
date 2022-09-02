@@ -35,6 +35,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
+    padding: 0;
+    margin: 0;
   }
   &__item {
     background: #eafaff;
@@ -53,6 +55,11 @@
     object-fit: cover;
 
     border-radius: 10px;
+  }
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   &__item-userName {
     margin: 0 0 18px;
