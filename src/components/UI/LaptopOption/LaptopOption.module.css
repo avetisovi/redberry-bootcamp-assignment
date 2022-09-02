@@ -35,3 +35,42 @@
 
   color: #797979;
 }
+
+@media (max-width: 1200px) {
+  .laptopOption.secondColumn .laptopOptionTitle {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .laptopOption.secondColumn .laptopOptionTitle,
+  .laptopOption.firstColumn .laptopOptionTitle {
+    width: 230px;
+  }
+
+  .laptopOptionTitle {
+    font-size: 18px;
+  }
+  .laptopOptionDesc {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+  .laptopOption {
+    margin-bottom: 0;
+  }
+  .laptopOption.secondColumn .laptopOptionTitle,
+  .laptopOption.firstColumn .laptopOptionTitle {
+    width: 187px;
+  }
+
+  .laptopOptionTitle {
+    font-size: 14px;
+    line-height: 25px;
+  }
+  .laptopOptionDesc {
+    font-size: 14px;
+    line-height: 25px;
+  }
+}

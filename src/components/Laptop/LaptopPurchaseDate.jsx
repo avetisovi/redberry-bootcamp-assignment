@@ -12,7 +12,7 @@ const LaptopPurchaseDate = ({ stat }) => {
     }
   }, [stat]);
   return (
-    <div>
+    <div className="laptop__purchase">
       <LaptopOption stat={formatedStat} className="secondColumn" />
     </div>
   );
