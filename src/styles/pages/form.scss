@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 90px 0 45px;
+  padding: 75px 0 45px;
   &__container {
     width: 1226px;
     padding: 45px 174px;
@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 0 15px 40px;
+    padding: 0 15px 25px;
   }
   &-steps {
     position: relative;
@@ -32,7 +32,7 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: 0;
       width: 40%;
       height: 2px;
       background-color: #000;
@@ -40,7 +40,7 @@
     }
     &.one::after {
       width: 30%;
-      left: 20px;
+      left: 30px;
     }
     &.two::after {
       left: calc(50% + 30px);
@@ -52,6 +52,10 @@
     color: #232323;
     font-weight: 700;
 
+    border: 0;
+    background-color: transparent;
+
+    padding: 15px;
     margin: 0;
   }
 }

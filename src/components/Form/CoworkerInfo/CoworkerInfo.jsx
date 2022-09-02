@@ -43,7 +43,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   };
 
   return (
-    <form className="coworker-info" onSubmit={handleSubmit}>
+    <form className="coworker-info" onSubmit={handleSubmit} id="coworker-info">
       <CoworkerInfoTop {...{ values, setValues }} />
       <Dropdown
         placeholder="თიმი"

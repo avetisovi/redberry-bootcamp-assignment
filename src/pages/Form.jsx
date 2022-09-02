@@ -133,7 +133,7 @@ const Form = () => {
   return (
     <div className="form">
       <BackBtn />
-      <FormHeader step={step} />
+      <FormHeader {...{ step, prevStep }} />
       <div className="form__container">
         {step === 1 ? (
           <CoworkerInfo {...{ values, setValues, nextStep, setCoworkerData }} />
