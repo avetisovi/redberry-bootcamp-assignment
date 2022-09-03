@@ -41,6 +41,8 @@ const LaptopItem = () => {
     getData('https://pcfy.redberryinternship.ge/api/');
   }, []);
 
+  document.querySelector('body').style.overflow = 'auto';
+
   return (
     <div className="laptop">
       <BackBtn />

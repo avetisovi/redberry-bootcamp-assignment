@@ -9,6 +9,8 @@ import LaptopsList from './pages/LaptopsList';
 import LaptopItem from './pages/LaptopItem';
 
 function App() {
+  document.querySelector('body').style.overflow = 'auto';
+
   return (
     <div className="App">
       <HashRouter>

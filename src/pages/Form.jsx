@@ -116,6 +116,10 @@ const Form = () => {
     initialiseLocalStorage(values, setValues);
   }, []);
 
+  successPopup
+    ? (document.querySelector('body').style.overflow = 'hidden')
+    : (document.querySelector('body').style.overflow = 'auto');
+
   return (
     <div className="form">
       <BackBtn />

@@ -13,6 +13,8 @@ const LaptopsList = () => {
     ).then(setLaptops);
   }, []);
 
+  document.querySelector('body').style.overflow = 'auto';
+
   return (
     <div className="laptop">
       <BackBtn />

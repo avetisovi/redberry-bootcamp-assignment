@@ -305,7 +305,8 @@
   }
 }
 
-.success__popup {
+.success__popup,
+.coworker-info__popup {
   background: #fff;
 
   display: flex;
@@ -354,5 +355,16 @@
     &:hover {
       text-decoration: underline;
     }
+  }
+}
+
+.coworker-info__popup {
+  padding: 150px 200px;
+  text-align: center;
+
+  &-img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 40px;
   }
 }
