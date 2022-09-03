@@ -122,7 +122,7 @@ const Form = () => {
 
   return (
     <div className="form">
-      <BackBtn />
+      <BackBtn formStep={step} prevStep={prevStep} />
       <FormHeader {...{ step, prevStep }} />
       <div className="form__container">
         {step === 1 ? (
