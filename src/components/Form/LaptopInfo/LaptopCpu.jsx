@@ -18,6 +18,7 @@ const LaptopCpu = ({
         value={values.cpu}
         alert={cpuDropdownAlert}
         setAlert={setCpuDropdownAlert}
+        valueName="cpu"
       />
       <InputWithLabelAndHint
         label="CPU-ს ბირთვი"
@@ -28,6 +29,7 @@ const LaptopCpu = ({
         value={values.cpuCore}
         onChange={setValues.setCpuCore}
         name="laptop_cpu_cores"
+        valueName="cpuCore"
       />
       <InputWithLabelAndHint
         label="CPU-ს ნაკადი"
@@ -38,6 +40,7 @@ const LaptopCpu = ({
         value={values.cpuThread}
         onChange={setValues.setCpuThread}
         name="laptop_cpu_threads"
+        valueName="cpuThread"
       />
     </div>
   );

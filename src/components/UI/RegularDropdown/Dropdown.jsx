@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cl from './Dropdown.module.css';
 import arrow from '../../../images/dropdown-arrow.svg';
-import { triggerOnEnter } from '../../../utils';
+import { isObjectEmpty, triggerOnEnter } from '../../../utils';
 
 const Dropdown = ({
   placeholder,
   options,
   setValue,
   value,
+  valueName,
   disabled,
   alert,
   setAlert
 }) => {
-  const [currentChoiceName, setCurrentChoiceName] = useState(
-    value?.name || placeholder
-  );
+  const [currentChoiceName, setCurrentChoiceName] = useState('');
   const [menuVisible, setMenuVisible] = useState(false);
 
   // change styling when disabled or invalid
@@ -39,7 +38,6 @@ const Dropdown = ({
   };
 
   const changeChoice = (opt) => {
-    setCurrentChoiceName(opt.name);
     setValue(opt);
     setMenuVisible(false);
     setAlert(false);
@@ -49,6 +47,17 @@ const Dropdown = ({
   document.querySelector('body').addEventListener('click', (e) => {
     setMenuVisible(false);
   });
+
+  // set localStorage value and change currentChoiceName on value change
+  useEffect(() => {
+    if (isObjectEmpty(value)) {
+      setCurrentChoiceName(placeholder);
+    } else {
+      setCurrentChoiceName(value.name);
+
+      localStorage.setItem(valueName, JSON.stringify(value));
+    }
+  }, [value]);
 
   return (
     <div className={classes()}>

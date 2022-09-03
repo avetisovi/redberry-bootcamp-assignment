@@ -11,12 +11,22 @@ const InputWithLabelAndHint = ({
   img,
   validation,
   value,
-  onChange
+  onChange,
+  valueName
 }) => {
   return (
     <div className={cl.wrapper}>
       <RegularInput
-        {...{ onChange, value, type, placeholder, img, validation, name }}
+        {...{
+          onChange,
+          value,
+          type,
+          placeholder,
+          img,
+          validation,
+          name,
+          valueName
+        }}
       />
       <label className={cl.label} htmlFor={name}>
         {label}

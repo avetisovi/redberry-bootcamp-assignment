@@ -15,6 +15,7 @@ const LaptopPurchase = ({ values, setValues }) => {
         value={values.purchaseDate}
         setValue={setValues.setPurchaseDate}
         name="laptop_purchase_date"
+        valueName="purchaseDate"
       />
       <InputWithLabelAndHint
         label="ლეპტოპის ფასი"
@@ -26,6 +27,7 @@ const LaptopPurchase = ({ values, setValues }) => {
         value={values.price}
         onChange={setValues.setPrice}
         name="laptop_price"
+        valueName="price"
       />
     </div>
   );

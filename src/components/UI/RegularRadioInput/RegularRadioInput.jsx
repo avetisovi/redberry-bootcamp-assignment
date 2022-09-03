@@ -10,10 +10,12 @@ const RegularRadioInput = ({
   setValue,
   value,
   setAlert,
-  alert
+  alert,
+  valueName
 }) => {
   const handleChange = (e, opt) => {
     setValue(opt.id);
+    localStorage.setItem(valueName, opt.id);
     setAlert(false);
   };
 

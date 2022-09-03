@@ -21,6 +21,7 @@ const LaptopModel = ({
         value={values.laptopName}
         onChange={setValues.setLaptopName}
         name="laptop_name"
+        valueName="laptopName"
       />
       <Dropdown
         placeholder="ლეპტოპის ბრენდი"
@@ -29,6 +30,7 @@ const LaptopModel = ({
         value={values.laptopBrand}
         alert={brandDropdownAlert}
         setAlert={setBrandDropdownAlert}
+        valueName="laptopBrand"
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import Dropdown from '../../UI/RegularDropdown/Dropdown';
 import CoworkerInfoTop from './CoworkerInfoTop';
-import { isObjectEmpty, fetchData } from '../../../utils';
+import { isObjectEmpty, getData } from '../../../utils';
 
 const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
@@ -12,14 +12,21 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
 
   // fetching teams and options
   useEffect(() => {
-    fetchData('https://pcfy.redberryinternship.ge/api/teams').then(
+    getData('https://pcfy.redberryinternship.ge/api/teams').then(
       setTeamOptions
     );
 
-    fetchData('https://pcfy.redberryinternship.ge/api/positions').then(
+    getData('https://pcfy.redberryinternship.ge/api/positions').then(
       setPosOptions
     );
   }, []);
+
+  // reset position when team is changed
+  useEffect(() => {
+    if (values.position.team_id !== values.team.id) {
+      setValues.setPosition({});
+    }
+  }, [values.team]);
 
   // submitting form and going to next step
   const handleSubmit = (e) => {
@@ -52,6 +59,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
         value={values.team}
         alert={teamDropdownAlert}
         setAlert={setTeamDropdownAlert}
+        valueName="team"
       />
       <Dropdown
         disabled={isObjectEmpty(values.team)}
@@ -61,6 +69,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
         value={values.position}
         alert={posDropdownAlert}
         setAlert={setPosDropdownAlert}
+        valueName="position"
       />
       <InputWithLabelAndHint
         label="მეილი"
@@ -71,6 +80,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
         onChange={setValues.setEmail}
         type="email"
         name="email"
+        valueName="email"
       />
       <InputWithLabelAndHint
         label="ტელეფონის ნომერი"
@@ -81,6 +91,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
         onChange={setValues.setPhoneNumber}
         type="tel"
         name="phone_number"
+        valueName="phoneNumber"
       />
       <button className="coworker-info__btn">შემდეგი</button>
     </form>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData, isObjectEmpty } from '../../../utils';
+import { getData, isObjectEmpty } from '../../../utils';
 import FileInput from '../FileInput';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
@@ -26,13 +26,11 @@ const LaptopInfo = ({
 
   // fetching brands and cpu options
   useEffect(() => {
-    fetchData('https://pcfy.redberryinternship.ge/api/brands').then(
+    getData('https://pcfy.redberryinternship.ge/api/brands').then(
       setBrandOptions
     );
 
-    fetchData('https://pcfy.redberryinternship.ge/api/cpus').then(
-      setCpuOptions
-    );
+    getData('https://pcfy.redberryinternship.ge/api/cpus').then(setCpuOptions);
   }, []);
 
   // submitting form and sending post request
@@ -108,6 +106,7 @@ const LaptopInfo = ({
         ]}
         setValue={setValues.setLaptopCondition}
         value={values.laptopCondition}
+        valueName="laptopCondition"
         setAlert={setConditionAlert}
         alert={conditionAlert}
       />

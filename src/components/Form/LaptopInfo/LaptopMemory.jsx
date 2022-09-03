@@ -14,6 +14,7 @@ const LaptopMemory = ({ values, setValues, memoryAlert, setMemoryAlert }) => {
         value={values.ram}
         onChange={setValues.setRam}
         name="laptop_ram"
+        valueName="ram"
       />
       <RegularRadioInput
         title="მეხსიერების ტიპი"
@@ -24,6 +25,7 @@ const LaptopMemory = ({ values, setValues, memoryAlert, setMemoryAlert }) => {
         ]}
         setValue={setValues.setMemoryType}
         value={values.memoryType}
+        valueName="memoryType"
         alert={memoryAlert}
         setAlert={setMemoryAlert}
       />

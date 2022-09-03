@@ -12,6 +12,7 @@ const CoworkerInfoTop = ({ values, setValues }) => {
         value={values.firstName}
         onChange={setValues.setFirstName}
         name="name"
+        valueName="firstName"
       />
       <InputWithLabelAndHint
         label="გვარი"
@@ -21,6 +22,7 @@ const CoworkerInfoTop = ({ values, setValues }) => {
         value={values.lastName}
         onChange={setValues.setLastName}
         name="surname"
+        valueName="lastName"
       />
     </div>
   );

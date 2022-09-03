@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import successIcon from '../../images/success.svg';
 
 const FormSuccessPopup = ({ setVisible }) => {
+  // disabling scroll when FormSuccessData is shown
+  document.querySelector('body').style.overflow = 'hidden';
+
   const navigate = useNavigate();
   const handleNavigation = (to) => {
     navigate(to);

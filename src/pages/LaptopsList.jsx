@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import LaptopListItem from '../components/Laptop/LaptopListItem';
 import BackBtn from '../components/BackBtn';
-import { fetchData } from '../utils';
+import { getData } from '../utils';
 
 const LaptopsList = () => {
   const [laptops, setLaptops] = useState([]);
 
   // fetching laptops list and then parsing it to laptops array
   useEffect(() => {
-    fetchData(
+    getData(
       'https://pcfy.redberryinternship.ge/api/laptops?token=ab09d65821320a72cc4969433abaaebf'
     ).then(setLaptops);
   }, []);

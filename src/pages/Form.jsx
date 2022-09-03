@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CoworkerInfo from '../components/Form/CoworkerInfo/CoworkerInfo';
 import LaptopInfo from '../components/Form/LaptopInfo/LaptopInfo';
 import FormHeader from '../components/Form/FormHeader';
 import BackBtn from '../components/BackBtn';
 
 import logo from '../images/form-logo.png';
-import { objToFormData } from '../utils';
+import { postData, initialiseLocalStorage } from '../utils';
 import FormSuccessPopup from '../components/Form/FormSuccessPopup';
 
 const Form = () => {
@@ -94,7 +94,6 @@ const Form = () => {
   };
 
   // sending all data to server
-  // ToDo: clear data after sending
   const handleConfirmation = (coworkerData, laptopData) => {
     // data as object
     const fullData = {
@@ -103,32 +102,19 @@ const Form = () => {
       token: 'ab09d65821320a72cc4969433abaaebf'
     };
 
-    // data as FormData
-    const formData = objToFormData(fullData);
+    postData(fullData);
 
-    // fetch request options
-    const requestOptions = {
-      method: 'POST',
-      body: formData,
-      redirect: 'follow'
-    };
-
-    // fetch request
-    fetch(
-      'https://pcfy.redberryinternship.ge/api/laptop/create',
-      requestOptions
-    )
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error));
+    // clearing localStorage data
+    localStorage.clear();
 
     // showing FormSuccessPopup after sending data
     window.scrollTo(0, 0);
     setSuccessPopup(true);
   };
 
-  // disabling scroll when FormSuccessData is shown
-  if (successPopup) document.querySelector('body').style.overflow = 'hidden';
+  useEffect(() => {
+    initialiseLocalStorage(values, setValues);
+  }, []);
 
   return (
     <div className="form">

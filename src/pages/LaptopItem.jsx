@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchData } from '../utils';
+import { getData } from '../utils';
 import BackBtn from '../components/BackBtn';
 import LaptopOwner from '../components/Laptop/LaptopOwner';
 import placeholderImg from '../images/placeholder.webp';
@@ -35,10 +35,10 @@ const LaptopItem = () => {
 
   // fetching laptop data and parsing it to laptop object
   useEffect(() => {
-    fetchData(
+    getData(
       `https://pcfy.redberryinternship.ge/api/laptop/${laptopId}?token=ab09d65821320a72cc4969433abaaebf`
     ).then(setLaptop);
-    fetchData('https://pcfy.redberryinternship.ge/api/');
+    getData('https://pcfy.redberryinternship.ge/api/');
   }, []);
 
   return (

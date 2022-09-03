@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import cl from './RegularInput.module.css';
-import tickIcon from '../../../images/tick.svg';
 
 const RegularInput = ({
   value,
@@ -9,7 +8,8 @@ const RegularInput = ({
   placeholder,
   img,
   validation,
-  name
+  name,
+  valueName
 }) => {
   // if invalid is true change input styles
   const [invalid, setInvalid] = useState(false);
@@ -29,6 +29,7 @@ const RegularInput = ({
 
   const onChange = (e) => {
     setValue(e.target.value);
+    localStorage.setItem(valueName, e.target.value);
     checkForVaidity(e);
   };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchData } from '../../utils';
+import { getData } from '../../utils';
 import LaptopOption from '../UI/LaptopOption/LaptopOption';
 
 const LaptopOwner = ({ stats }) => {
@@ -9,8 +9,8 @@ const LaptopOwner = ({ stats }) => {
 
   // fetching teams and positions
   useEffect(() => {
-    fetchData('https://pcfy.redberryinternship.ge/api/teams').then(setTeams);
-    fetchData('https://pcfy.redberryinternship.ge/api/positions').then(
+    getData('https://pcfy.redberryinternship.ge/api/teams').then(setTeams);
+    getData('https://pcfy.redberryinternship.ge/api/positions').then(
       setPositions
     );
   }, []);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchData } from '../../utils';
+import { getData } from '../../utils';
 
 import LaptopOption from '../UI/LaptopOption/LaptopOption';
 
@@ -9,7 +9,7 @@ const LaptopProperties = ({ stats }) => {
 
   // fetching brands
   useEffect(() => {
-    fetchData('https://pcfy.redberryinternship.ge/api/brands').then(setBrands);
+    getData('https://pcfy.redberryinternship.ge/api/brands').then(setBrands);
   }, []);
 
   // waiting stats to fetch to format data
