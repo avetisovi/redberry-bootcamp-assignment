@@ -6,11 +6,13 @@ const BackBtn = ({ formStep, prevStep }) => {
   const navigate = useNavigate();
 
   const handleNavigtion = () => {
+    // go to forms first step if user is on forms second step
     if (formStep === 2) {
       prevStep();
       return;
     }
 
+    // go to previous page
     navigate(-1);
   };
   return (

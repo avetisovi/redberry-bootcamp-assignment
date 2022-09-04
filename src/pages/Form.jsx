@@ -99,17 +99,17 @@ const Form = () => {
     const fullData = {
       ...Object.fromEntries(coworkerData),
       ...Object.fromEntries(laptopData),
-      token: 'ab09d65821320a72cc4969433abaaebf'
+      token: process.env.REACT_APP_TOKEN
     };
 
-    postData(fullData);
+    postData(fullData).then(() => {
+      // clearing localStorage data
+      localStorage.clear();
 
-    // clearing localStorage data
-    localStorage.clear();
-
-    // showing FormSuccessPopup after sending data
-    window.scrollTo(0, 0);
-    setSuccessPopup(true);
+      // showing FormSuccessPopup after sending data
+      window.scrollTo(0, 0);
+      setSuccessPopup(true);
+    });
   };
 
   useEffect(() => {

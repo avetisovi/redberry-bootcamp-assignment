@@ -22,12 +22,12 @@ export const postData = async (data) => {
     };
 
     // fetch request
-    const response = await fetch(
+    const request = await fetch(
       'https://pcfy.redberryinternship.ge/api/laptop/create',
       requestOptions
     );
-    const result = await response.text();
-    console.log(result);
+    const response = await request;
+    return response;
   } catch (error) {
     throw new Error(error);
   }

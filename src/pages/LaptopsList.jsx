@@ -9,7 +9,7 @@ const LaptopsList = () => {
   // fetching laptops list and then parsing it to laptops array
   useEffect(() => {
     getData(
-      'https://pcfy.redberryinternship.ge/api/laptops?token=ab09d65821320a72cc4969433abaaebf'
+      `https://pcfy.redberryinternship.ge/api/laptops?token=${process.env.REACT_APP_TOKEN}`
     ).then(setLaptops);
   }, []);
 

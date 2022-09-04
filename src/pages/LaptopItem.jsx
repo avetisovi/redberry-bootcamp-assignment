@@ -36,7 +36,7 @@ const LaptopItem = () => {
   // fetching laptop data and parsing it to laptop object
   useEffect(() => {
     getData(
-      `https://pcfy.redberryinternship.ge/api/laptop/${laptopId}?token=ab09d65821320a72cc4969433abaaebf`
+      `https://pcfy.redberryinternship.ge/api/laptop/${laptopId}?token=${process.env.REACT_APP_TOKEN}`
     ).then(setLaptop);
     getData('https://pcfy.redberryinternship.ge/api/');
   }, []);
