@@ -2,7 +2,12 @@ import React, { useContext } from 'react';
 import { FormValuesContext } from '../../../context';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 
-const CoworkerInfoTop = () => {
+const CoworkerInfoTop = ({
+  firstNameAlert,
+  setFirstNameAlert,
+  lastNameAlert,
+  setLastNameAlert
+}) => {
   const { values, setValues } = useContext(FormValuesContext);
 
   return (
@@ -16,6 +21,8 @@ const CoworkerInfoTop = () => {
         onChange={setValues.setFirstName}
         name="name"
         valueName="firstName"
+        alert={firstNameAlert}
+        setAlert={setFirstNameAlert}
       />
       <InputWithLabelAndHint
         label="გვარი"
@@ -26,6 +33,8 @@ const CoworkerInfoTop = () => {
         onChange={setValues.setLastName}
         name="surname"
         valueName="lastName"
+        alert={lastNameAlert}
+        setAlert={setLastNameAlert}
       />
     </div>
   );

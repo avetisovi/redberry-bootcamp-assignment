@@ -3,7 +3,12 @@ import { FormValuesContext } from '../../../context';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
-const LaptopMemory = ({ memoryAlert, setMemoryAlert }) => {
+const LaptopMemory = ({
+  ramAlert,
+  setRamAlert,
+  memoryTypeAlert,
+  setMemoryTypeAlert
+}) => {
   const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-memory form__two-elems">
@@ -17,6 +22,8 @@ const LaptopMemory = ({ memoryAlert, setMemoryAlert }) => {
         onChange={setValues.setRam}
         name="laptop_ram"
         valueName="ram"
+        alert={ramAlert}
+        setAlert={setRamAlert}
       />
       <RegularRadioInput
         title="მეხსიერების ტიპი"
@@ -28,8 +35,8 @@ const LaptopMemory = ({ memoryAlert, setMemoryAlert }) => {
         setValue={setValues.setMemoryType}
         value={values.memoryType}
         valueName="memoryType"
-        alert={memoryAlert}
-        setAlert={setMemoryAlert}
+        alert={memoryTypeAlert}
+        setAlert={setMemoryTypeAlert}
       />
     </div>
   );

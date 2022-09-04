@@ -3,7 +3,15 @@ import Dropdown from '../../UI/RegularDropdown/Dropdown';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import { FormValuesContext } from '../../../context';
 
-const LaptopCpu = ({ cpuOptions, cpuDropdownAlert, setCpuDropdownAlert }) => {
+const LaptopCpu = ({
+  cpuOptions,
+  cpuDropdownAlert,
+  setCpuDropdownAlert,
+  cpuCoreAlert,
+  setCpuCoreAlert,
+  cpuThreadAlert,
+  setCpuThreadAlert
+}) => {
   const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-cpu">
@@ -26,6 +34,8 @@ const LaptopCpu = ({ cpuOptions, cpuDropdownAlert, setCpuDropdownAlert }) => {
         onChange={setValues.setCpuCore}
         name="laptop_cpu_cores"
         valueName="cpuCore"
+        alert={cpuCoreAlert}
+        setAlert={setCpuCoreAlert}
       />
       <InputWithLabelAndHint
         label="CPU-ს ნაკადი"
@@ -37,6 +47,8 @@ const LaptopCpu = ({ cpuOptions, cpuDropdownAlert, setCpuDropdownAlert }) => {
         onChange={setValues.setCpuThread}
         name="laptop_cpu_threads"
         valueName="cpuThread"
+        alert={cpuThreadAlert}
+        setAlert={setCpuThreadAlert}
       />
     </div>
   );

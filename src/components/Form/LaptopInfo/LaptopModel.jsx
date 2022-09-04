@@ -5,6 +5,8 @@ import Dropdown from '../../UI/RegularDropdown/Dropdown';
 
 const LaptopModel = ({
   brandOptions,
+  laptopNameAlert,
+  setLaptopNameAlert,
   brandDropdownAlert,
   setBrandDropdownAlert
 }) => {
@@ -22,6 +24,8 @@ const LaptopModel = ({
         onChange={setValues.setLaptopName}
         name="laptop_name"
         valueName="laptopName"
+        alert={laptopNameAlert}
+        setAlert={setLaptopNameAlert}
       />
       <Dropdown
         placeholder="ლეპტოპის ბრენდი"

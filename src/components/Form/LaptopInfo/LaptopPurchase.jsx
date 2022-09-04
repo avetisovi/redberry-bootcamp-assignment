@@ -6,7 +6,7 @@ import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabel
 import gelImg from '../../../images/gel.svg';
 import { FormValuesContext } from '../../../context';
 
-const LaptopPurchase = () => {
+const LaptopPurchase = ({ priceAlert, setPriceAlert }) => {
   const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-purchase form__two-elems">
@@ -30,6 +30,8 @@ const LaptopPurchase = () => {
         onChange={setValues.setPrice}
         name="laptop_price"
         valueName="price"
+        alert={priceAlert}
+        setAlert={setPriceAlert}
       />
     </div>
   );

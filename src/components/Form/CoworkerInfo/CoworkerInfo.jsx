@@ -8,8 +8,13 @@ import { FormValuesContext } from '../../../context';
 const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
   const [posOptions, setPosOptions] = useState([]);
+
+  const [firstNameAlert, setFirstNameAlert] = useState(false);
+  const [lastNameAlert, setLastNameAlert] = useState(false);
   const [teamDropdownAlert, setTeamDropdownAlert] = useState(false);
   const [posDropdownAlert, setPosDropdownAlert] = useState(false);
+  const [emailAlert, setEmailAlert] = useState(false);
+  const [phoneNumberAlert, setPhoneNumberAlert] = useState(false);
 
   const { values, setValues } = useContext(FormValuesContext);
 
@@ -35,20 +40,55 @@ const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // checking for validity
-    if (isObjectEmpty(values.team)) {
-      setTeamDropdownAlert(true);
-    } else if (isObjectEmpty(values.position)) {
-      setPosDropdownAlert(true);
-    } else {
-      // save data and go to next step if data is valid
-      setTeamDropdownAlert(false);
-      setPosDropdownAlert(false);
+    // values of form's first step
+    const coworkerValues = [
+      values.firstName,
+      values.lastName,
+      values.team,
+      values.position,
+      values.email,
+      values.phoneNumber
+    ];
+
+    // not filled
+    const emptyValues = coworkerValues.filter(
+      (value) => isObjectEmpty(value) || value === ''
+    );
+
+    // checking everything is filled
+    if (!emptyValues.length) {
       const data = new FormData(e.target);
       data.append('team_id', values.team.id);
       data.append('position_id', values.position.id);
       setCoworkerData(data);
       nextStep();
+
+      return;
+    }
+
+    // setting alert for not filled inputs and dropdowns
+    if (!values.firstName) {
+      setFirstNameAlert(true);
+    }
+
+    if (!values.lastName) {
+      setLastNameAlert(true);
+    }
+
+    if (isObjectEmpty(values.team)) {
+      setTeamDropdownAlert(true);
+    }
+
+    if (isObjectEmpty(values.position)) {
+      setPosDropdownAlert(true);
+    }
+
+    if (!values.email) {
+      setEmailAlert(true);
+    }
+
+    if (!values.phoneNumber) {
+      setPhoneNumberAlert(true);
     }
   };
 
@@ -56,7 +96,14 @@ const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
 
   return (
     <form className="coworker-info" onSubmit={handleSubmit} id="coworker-info">
-      <CoworkerInfoTop />
+      <CoworkerInfoTop
+        {...{
+          firstNameAlert,
+          setFirstNameAlert,
+          lastNameAlert,
+          setLastNameAlert
+        }}
+      />
       <Dropdown
         placeholder="თიმი"
         options={teamOptions}
@@ -86,6 +133,8 @@ const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
         type="email"
         name="email"
         valueName="email"
+        alert={emailAlert}
+        setAlert={setEmailAlert}
       />
       <InputWithLabelAndHint
         label="ტელეფონის ნომერი"
@@ -97,6 +146,8 @@ const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
         type="tel"
         name="phone_number"
         valueName="phoneNumber"
+        alert={phoneNumberAlert}
+        setAlert={setPhoneNumberAlert}
       />
       <button className="coworker-info__btn">შემდეგი</button>
     </form>

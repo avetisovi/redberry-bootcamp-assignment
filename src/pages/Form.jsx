@@ -103,13 +103,15 @@ const Form = () => {
       token: process.env.REACT_APP_TOKEN
     };
 
-    postData(fullData).then(() => {
-      // clearing localStorage data
-      localStorage.clear();
+    postData(fullData).then((res) => {
+      if (res.ok) {
+        // clearing localStorage data
+        localStorage.clear();
 
-      // showing FormSuccessPopup after sending data
-      window.scrollTo(0, 0);
-      setSuccessPopup(true);
+        // showing FormSuccessPopup after sending data
+        window.scrollTo(0, 0);
+        setSuccessPopup(true);
+      }
     });
   };
 

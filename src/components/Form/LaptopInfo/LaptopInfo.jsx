@@ -13,10 +13,19 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
   const [brandOptions, setBrandOptions] = useState([]);
   const [cpuOptions, setCpuOptions] = useState([]);
 
+  // alerts
   const [imgAlert, setImgAlert] = useState(false);
+  const [laptopNameAlert, setLaptopNameAlert] = useState(false);
   const [brandDropdownAlert, setBrandDropdownAlert] = useState(false);
+
   const [cpuDropdownAlert, setCpuDropdownAlert] = useState(false);
-  const [memoryAlert, setMemoryAlert] = useState(false);
+  const [cpuCoreAlert, setCpuCoreAlert] = useState(false);
+  const [cpuThreadAlert, setCpuThreadAlert] = useState(false);
+
+  const [ramAlert, setRamAlert] = useState(false);
+  const [memoryTypeAlert, setMemoryTypeAlert] = useState(false);
+
+  const [priceAlert, setPriceAlert] = useState(false);
   const [conditionAlert, setConditionAlert] = useState(false);
 
   const { values, setValues } = useContext(FormValuesContext);
@@ -33,28 +42,83 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
   // submitting form and sending post request
   const handleSubmit = (e) => {
     e.preventDefault();
-    // checking for validity
-    if (!values.laptopImg) {
-      setImgAlert(true);
-      window.scrollTo(0, 0);
-    } else if (isObjectEmpty(values.laptopBrand)) {
-      setBrandDropdownAlert(true);
-      window.scrollTo(0, 0);
-    } else if (isObjectEmpty(values.cpu)) {
-      setCpuDropdownAlert(true);
-      window.scrollTo(0, 0);
-    } else if (!values.memoryType) {
-      setMemoryAlert(true);
-    } else if (!values.laptopCondition) {
-      setConditionAlert(true);
-    } else {
-      // send data if form is valid
+
+    // values of form's second step
+    const laptopValues = [
+      values.laptopImg,
+      values.laptopName,
+      values.laptopBrand,
+      values.cpu,
+      values.cpuCore,
+      values.cpuThread,
+      values.ram,
+      values.memoryType,
+      values.price,
+      values.laptopCondition
+    ];
+
+    // not filled
+    const emptyValues = laptopValues.filter(
+      (value) =>
+        value === null ||
+        value === 'null' ||
+        isObjectEmpty(value) ||
+        value === ''
+    );
+
+    // checking everything is filled
+    if (!emptyValues.length) {
+      console.log('working');
       const data = new FormData(e.target);
+
       data.append('laptop_brand_id', values.laptopBrand.id);
       data.append('laptop_cpu', values.cpu.name);
       data.append('laptop_image', values.laptopImg);
 
       handleConfirmation(coworkerData, data);
+
+      return;
+    }
+
+    // setting alerts for not filled inputs and dropdowns
+    if (!values.laptopImg) {
+      setImgAlert(true);
+    }
+
+    if (!values.laptopName) {
+      setLaptopNameAlert(true);
+    }
+
+    if (isObjectEmpty(values.laptopBrand)) {
+      setBrandDropdownAlert(true);
+    }
+
+    if (isObjectEmpty(values.cpu)) {
+      setCpuDropdownAlert(true);
+    }
+
+    if (!values.cpuCore) {
+      setCpuCoreAlert(true);
+    }
+
+    if (!values.cpuThread) {
+      setCpuThreadAlert(true);
+    }
+
+    if (!values.ram) {
+      setRamAlert(true);
+    }
+
+    if (!values.memoryType || values.memoryType === 'null') {
+      setMemoryTypeAlert(true);
+    }
+
+    if (!values.price) {
+      setPriceAlert(true);
+    }
+
+    if (!values.laptopCondition || values.laptopCondition === 'null') {
+      setConditionAlert(true);
     }
   };
 
@@ -74,6 +138,8 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
       <LaptopModel
         {...{
           brandOptions,
+          laptopNameAlert,
+          setLaptopNameAlert,
           brandDropdownAlert,
           setBrandDropdownAlert
         }}
@@ -83,12 +149,18 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
         {...{
           cpuOptions,
           cpuDropdownAlert,
-          setCpuDropdownAlert
+          setCpuDropdownAlert,
+          cpuCoreAlert,
+          setCpuCoreAlert,
+          cpuThreadAlert,
+          setCpuThreadAlert
         }}
       />
-      <LaptopMemory {...{ memoryAlert, setMemoryAlert }} />
+      <LaptopMemory
+        {...{ ramAlert, setRamAlert, memoryTypeAlert, setMemoryTypeAlert }}
+      />
       <div className="laptop-section__break"></div>
-      <LaptopPurchase />
+      <LaptopPurchase {...{ priceAlert, setPriceAlert }} />
 
       <RegularRadioInput
         title="ლეპტოპის მდგომარეობა"

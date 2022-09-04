@@ -9,11 +9,10 @@ const RegularInput = ({
   img,
   validation,
   name,
-  valueName
+  valueName,
+  alert,
+  setAlert
 }) => {
-  // if invalid is true change input styles
-  const [invalid, setInvalid] = useState(false);
-
   // set invalid to true if filled content does'nt match validation
   const checkForVaidity = (e) => {
     if (
@@ -21,9 +20,9 @@ const RegularInput = ({
       e.target !== document.activeElement &&
       e.target.value !== ''
     ) {
-      setInvalid(true);
+      setAlert(true);
     } else {
-      setInvalid(false);
+      setAlert(false);
     }
   };
 
@@ -34,14 +33,14 @@ const RegularInput = ({
   };
 
   return (
-    <div className={invalid ? `${cl.wrapper} invalid` : cl.wrapper}>
+    <div className={alert ? cl.wrapper + ' ' + cl.invalid : cl.wrapper}>
       <input
-        required
         className={cl.input}
         {...{ value, type, placeholder, name, onChange }}
         {...validation}
         id={name}
         onBlur={checkForVaidity}
+        onFocus={() => setAlert(false)}
       />
       {img && <img className={cl.img} src={img} alt="" />}
     </div>

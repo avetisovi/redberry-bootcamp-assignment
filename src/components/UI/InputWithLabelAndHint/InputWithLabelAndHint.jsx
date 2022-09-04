@@ -12,10 +12,15 @@ const InputWithLabelAndHint = ({
   validation,
   value,
   onChange,
-  valueName
+  valueName,
+  alert,
+  setAlert
 }) => {
   return (
-    <div className={cl.wrapper}>
+    <div className={alert ? cl.wrapper + ' ' + cl.invalid : cl.wrapper}>
+      <label className={cl.label} htmlFor={name}>
+        {label}
+      </label>
       <RegularInput
         {...{
           onChange,
@@ -25,12 +30,11 @@ const InputWithLabelAndHint = ({
           img,
           validation,
           name,
-          valueName
+          valueName,
+          alert,
+          setAlert
         }}
       />
-      <label className={cl.label} htmlFor={name}>
-        {label}
-      </label>
       <p className={cl.hint}>{hint}</p>
     </div>
   );
