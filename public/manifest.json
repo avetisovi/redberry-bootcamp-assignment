@@ -1,25 +1,45 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Redberry PCfy",
+  "name": "Redberry PC for you",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
       "src": "logo.png",
       "type": "image/png",
-      "sizes": "85x85"
-    },
-    {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "85x85"
+      "sizes": "any"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#62A1EB",
+  "background_color": "#f7f7f7",
+  "description": "Redberry intership assignment",
+  "shortcuts": [
+    {
+      "name": "Give laptops",
+      "short_name": "Give laptops to coworkers",
+      "description": "Laptops givingg form",
+      "url": "/#/form",
+      "icons": [
+        {
+          "src": "logo.png",
+          "type": "image/png",
+          "sizes": "any"
+        }
+      ]
+    },
+    {
+      "name": "Laptops list",
+      "short_name": "Given laptops list",
+      "description": "list of coworkers who have laptops",
+      "url": "/#/laptops",
+      "icons": [
+        {
+          "src": "logo.png",
+          "type": "image/png",
+          "sizes": "any"
+        }
+      ]
+    }
+  ]
 }
