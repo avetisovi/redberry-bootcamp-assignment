@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FormValuesContext } from '../../../context';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 
-const CoworkerInfoTop = ({ values, setValues }) => {
+const CoworkerInfoTop = () => {
+  const { values, setValues } = useContext(FormValuesContext);
+
   return (
     <div className="coworker-info__top form__two-elems">
       <InputWithLabelAndHint

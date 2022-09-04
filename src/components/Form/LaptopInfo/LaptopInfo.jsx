@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { getData, isObjectEmpty } from '../../../utils';
 import FileInput from '../FileInput';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
@@ -7,14 +7,9 @@ import LaptopModel from './LaptopModel';
 import LaptopCpu from './LaptopCpu';
 import LaptopMemory from './LaptopMemory';
 import LaptopPurchase from './LaptopPurchase';
+import { FormValuesContext } from '../../../context';
 
-const LaptopInfo = ({
-  prevStep,
-  handleConfirmation,
-  values,
-  setValues,
-  coworkerData
-}) => {
+const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
   const [brandOptions, setBrandOptions] = useState([]);
   const [cpuOptions, setCpuOptions] = useState([]);
 
@@ -23,6 +18,8 @@ const LaptopInfo = ({
   const [cpuDropdownAlert, setCpuDropdownAlert] = useState(false);
   const [memoryAlert, setMemoryAlert] = useState(false);
   const [conditionAlert, setConditionAlert] = useState(false);
+
+  const { values, setValues } = useContext(FormValuesContext);
 
   // fetching brands and cpu options
   useEffect(() => {
@@ -65,10 +62,10 @@ const LaptopInfo = ({
     <form className="laptop-info" onSubmit={handleSubmit}>
       <FileInput
         value={values.laptopImg}
-        setValue={setValues.setLaptopImg}
         imgName={values.laptopImgName}
-        setImgName={setValues.setLaptopImgName}
         imgSize={values.laptopImgSize}
+        setValue={setValues.setLaptopImg}
+        setImgName={setValues.setLaptopImgName}
         setImgSize={setValues.setLaptopImgSize}
         alert={imgAlert}
         setAlert={setImgAlert}
@@ -76,8 +73,6 @@ const LaptopInfo = ({
       />
       <LaptopModel
         {...{
-          values,
-          setValues,
           brandOptions,
           brandDropdownAlert,
           setBrandDropdownAlert
@@ -86,16 +81,14 @@ const LaptopInfo = ({
       <div className="laptop-section__break"></div>
       <LaptopCpu
         {...{
-          values,
-          setValues,
           cpuOptions,
           cpuDropdownAlert,
           setCpuDropdownAlert
         }}
       />
-      <LaptopMemory {...{ values, setValues, memoryAlert, setMemoryAlert }} />
+      <LaptopMemory {...{ memoryAlert, setMemoryAlert }} />
       <div className="laptop-section__break"></div>
-      <LaptopPurchase {...{ values, setValues }} />
+      <LaptopPurchase />
 
       <RegularRadioInput
         title="ლეპტოპის მდგომარეობა"

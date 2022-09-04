@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import DateInput from '../../UI/DateInput/DateInput';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 
 import gelImg from '../../../images/gel.svg';
+import { FormValuesContext } from '../../../context';
 
-const LaptopPurchase = ({ values, setValues }) => {
+const LaptopPurchase = () => {
+  const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-purchase form__two-elems">
       <DateInput

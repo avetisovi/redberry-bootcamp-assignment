@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import Dropdown from '../../UI/RegularDropdown/Dropdown';
 import CoworkerInfoTop from './CoworkerInfoTop';
 import { isObjectEmpty, getData } from '../../../utils';
 import CoworkerInfoPopup from './CoworkerInfoPopup';
+import { FormValuesContext } from '../../../context';
 
-const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
+const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
   const [posOptions, setPosOptions] = useState([]);
   const [teamDropdownAlert, setTeamDropdownAlert] = useState(false);
   const [posDropdownAlert, setPosDropdownAlert] = useState(false);
   const [usersWithLaptops, setUsersWithLaptops] = useState([]);
   const [userHasLaptop, setUserHasLaptop] = useState(false);
+
+  const { values, setValues } = useContext(FormValuesContext);
 
   // fetching teams, options and users with laptop
   useEffect(() => {
@@ -72,7 +75,7 @@ const CoworkerInfo = ({ nextStep, values, setValues, setCoworkerData }) => {
 
   return (
     <form className="coworker-info" onSubmit={handleSubmit} id="coworker-info">
-      <CoworkerInfoTop {...{ values, setValues }} />
+      <CoworkerInfoTop />
       <Dropdown
         placeholder="თიმი"
         options={teamOptions}

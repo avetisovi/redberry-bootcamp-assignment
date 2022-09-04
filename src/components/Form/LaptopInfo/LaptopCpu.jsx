@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Dropdown from '../../UI/RegularDropdown/Dropdown';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import { FormValuesContext } from '../../../context';
 
-const LaptopCpu = ({
-  values,
-  setValues,
-  cpuOptions,
-  cpuDropdownAlert,
-  setCpuDropdownAlert
-}) => {
+const LaptopCpu = ({ cpuOptions, cpuDropdownAlert, setCpuDropdownAlert }) => {
+  const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-cpu">
       <Dropdown

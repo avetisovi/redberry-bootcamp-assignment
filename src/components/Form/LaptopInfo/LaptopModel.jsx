@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FormValuesContext } from '../../../context';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import Dropdown from '../../UI/RegularDropdown/Dropdown';
 
 const LaptopModel = ({
-  values,
-  setValues,
   brandOptions,
   brandDropdownAlert,
   setBrandDropdownAlert
 }) => {
+  const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-model form__two-elems">
       <InputWithLabelAndHint

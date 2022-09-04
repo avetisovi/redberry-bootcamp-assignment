@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FormValuesContext } from '../../../context';
 import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
 
-const LaptopMemory = ({ values, setValues, memoryAlert, setMemoryAlert }) => {
+const LaptopMemory = ({ memoryAlert, setMemoryAlert }) => {
+  const { values, setValues } = useContext(FormValuesContext);
   return (
     <div className="laptop-memory form__two-elems">
       <InputWithLabelAndHint

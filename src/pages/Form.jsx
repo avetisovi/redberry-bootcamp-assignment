@@ -3,6 +3,7 @@ import CoworkerInfo from '../components/Form/CoworkerInfo/CoworkerInfo';
 import LaptopInfo from '../components/Form/LaptopInfo/LaptopInfo';
 import FormHeader from '../components/Form/FormHeader';
 import BackBtn from '../components/BackBtn';
+import { FormValuesContext } from '../context';
 
 import logo from '../images/form-logo.png';
 import { postData, initialiseLocalStorage } from '../utils';
@@ -125,19 +126,19 @@ const Form = () => {
       <BackBtn formStep={step} prevStep={prevStep} />
       <FormHeader {...{ step, prevStep }} />
       <div className="form__container">
-        {step === 1 ? (
-          <CoworkerInfo {...{ values, setValues, nextStep, setCoworkerData }} />
-        ) : (
-          <LaptopInfo
-            {...{
-              values,
-              setValues,
-              prevStep,
-              handleConfirmation,
-              coworkerData
-            }}
-          />
-        )}
+        <FormValuesContext.Provider value={{ values, setValues }}>
+          {step === 1 ? (
+            <CoworkerInfo {...{ nextStep, setCoworkerData }} />
+          ) : (
+            <LaptopInfo
+              {...{
+                prevStep,
+                handleConfirmation,
+                coworkerData
+              }}
+            />
+          )}
+        </FormValuesContext.Provider>
       </div>
       <img className="form__logo" src={logo} alt="" />
       {successPopup && <FormSuccessPopup setVisible={setSuccessPopup} />}
