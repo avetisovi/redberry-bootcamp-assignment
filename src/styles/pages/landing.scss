@@ -9,9 +9,11 @@
     height: 100vh;
   }
   &-logo {
-    width: 112px;
-    height: 18px;
     margin-bottom: 85px;
+    img {
+      width: 112px;
+      height: 18px;
+    }
   }
   &-img {
     margin-bottom: 123px;

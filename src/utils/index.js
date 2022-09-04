@@ -4,9 +4,7 @@ export const getData = async (url) => {
     const request = await fetch(url);
     const response = await request.json();
     return response.data;
-  } catch (error) {
-    throw new Error(error);
-  }
+  } catch (error) {}
 };
 
 export const postData = async (data) => {

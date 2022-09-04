@@ -51,7 +51,7 @@
   }
   &__item-img {
     width: 266px;
-    height: 178px;
+    aspect-ratio: 14 / 9;
     object-fit: cover;
 
     border-radius: 10px;

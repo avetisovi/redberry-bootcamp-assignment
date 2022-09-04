@@ -10,9 +10,6 @@ import LaptopItem from './pages/LaptopItem';
 
 function App() {
   document.querySelector('body').style.overflow = 'auto';
-
-  console.log(process.env.REACT_APP_NOT_SECRET_CODE);
-  console.log(process.env.TOKEN);
   return (
     <div className="App">
       <HashRouter>

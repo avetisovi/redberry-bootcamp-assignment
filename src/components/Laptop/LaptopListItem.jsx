@@ -10,9 +10,9 @@ const LaptopListItem = ({ data }) => {
         alt="laptop"
       />
       <div className="laptops__item-content">
-        <h3 className="laptops__item-userName">
+        <p className="laptops__item-userName">
           {data.user.name} {data.user.surname}
-        </h3>
+        </p>
         <p className="laptops__item-laptopName">{data.laptop.name}</p>
         <Link className="laptops__item-link" to={`/laptops/${data.laptop.id}`}>
           მეტის ნახვა
