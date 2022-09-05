@@ -1,4 +1,7 @@
-import './fonts/HelveticaNeue.ttc';
+import './fonts/HelveticaNeue-300.ttf';
+import './fonts/HelveticaNeue-400.ttf';
+import './fonts/HelveticaNeue-500.ttf';
+import './fonts/HelveticaNeue-700.ttf';
 import './styles/index.scss';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';

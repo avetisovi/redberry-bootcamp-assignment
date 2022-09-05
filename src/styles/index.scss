@@ -3,15 +3,8 @@
 @import 'pages/landing.scss';
 @import 'pages/form.scss';
 @import 'pages/laptop.scss';
-
 // connecting font family
-@font-face {
-  font-family: 'HelveticaNeue';
-  src: local('HelveticaNeue'),
-    url('../fonts/HelveticaNeue.ttc') format('truetype');
-  font-synthesis: normal;
-  font-display: swap;
-}
+@import 'fonts.scss';
 
 * {
   box-sizing: border-box;
