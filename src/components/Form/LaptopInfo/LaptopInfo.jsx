@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { getData, isObjectEmpty } from '../../../utils';
 import FileInput from '../FileInput';
-import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
+import RegularRadioInput from '../UI/RegularRadioInput/RegularRadioInput';
 
 import LaptopModel from './LaptopModel';
 import LaptopCpu from './LaptopCpu';
 import LaptopMemory from './LaptopMemory';
 import LaptopPurchase from './LaptopPurchase';
-import { FormValuesContext } from '../../../context';
+import { FormValuesContext, ServerErrorContext } from '../../../context';
 
 const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
+  const { setErrorText, setServerError } = useContext(ServerErrorContext);
+
   const [brandOptions, setBrandOptions] = useState([]);
   const [cpuOptions, setCpuOptions] = useState([]);
 
@@ -32,12 +34,22 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
 
   // fetching brands and cpu options
   useEffect(() => {
-    getData('https://pcfy.redberryinternship.ge/api/brands').then(
-      setBrandOptions
-    );
+    getData('https://pcfy.redberryinternship.ge/api/brands').then((res) => {
+      if (res.ok) {
+        res.json().then((res) => setBrandOptions(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
+    });
 
     getData('https://pcfy.redberryinternship.ge/api/cpus').then((res) => {
-      if (res) setCpuOptions(res);
+      if (res.ok) {
+        res.json().then((res) => setCpuOptions(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
     });
   }, []);
 

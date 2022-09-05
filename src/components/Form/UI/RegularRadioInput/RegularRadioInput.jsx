@@ -1,7 +1,7 @@
 import React from 'react';
 
 import cl from './RegularRadioInput.module.css';
-import alertImg from '../../../images/imgMissing.svg';
+import alertImg from '../../../../images/imgMissing.svg';
 
 const RegularRadioInput = ({
   title,

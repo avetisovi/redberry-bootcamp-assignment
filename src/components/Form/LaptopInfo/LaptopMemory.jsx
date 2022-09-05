@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FormValuesContext } from '../../../context';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
-import RegularRadioInput from '../../UI/RegularRadioInput/RegularRadioInput';
+import InputWithLabelAndHint from '../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import RegularRadioInput from '../UI/RegularRadioInput/RegularRadioInput';
 
 const LaptopMemory = ({
   ramAlert,

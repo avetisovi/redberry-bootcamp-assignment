@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cl from './Dropdown.module.css';
-import arrow from '../../../images/dropdown-arrow.svg';
-import { isObjectEmpty, triggerOnEnter } from '../../../utils';
+import arrow from '../../../../images/dropdown-arrow.svg';
+import { isObjectEmpty, triggerOnEnter } from '../../../../utils';
 
 const Dropdown = ({
   placeholder,

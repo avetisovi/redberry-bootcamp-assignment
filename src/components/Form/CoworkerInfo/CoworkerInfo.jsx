@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
-import Dropdown from '../../UI/RegularDropdown/Dropdown';
+import InputWithLabelAndHint from '../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import Dropdown from '../UI/RegularDropdown/Dropdown';
 import CoworkerInfoTop from './CoworkerInfoTop';
 import { isObjectEmpty, getData } from '../../../utils';
-import { FormValuesContext } from '../../../context';
+import { FormValuesContext, ServerErrorContext } from '../../../context';
 
 const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
   const [teamOptions, setTeamOptions] = useState([]);
@@ -18,15 +18,27 @@ const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
 
   const { values, setValues } = useContext(FormValuesContext);
 
+  const { setServerError, setErrorText } = useContext(ServerErrorContext);
+
   // fetching teams and options
   useEffect(() => {
-    getData('https://pcfy.redberryinternship.ge/api/teams').then(
-      setTeamOptions
-    );
+    getData('https://pcfy.redberryinternship.ge/api/teams').then((res) => {
+      if (res.ok) {
+        res.json().then((res) => setTeamOptions(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
+    });
 
-    getData('https://pcfy.redberryinternship.ge/api/positions').then(
-      setPosOptions
-    );
+    getData('https://pcfy.redberryinternship.ge/api/positions').then((res) => {
+      if (res.ok) {
+        res.json().then((res) => setPosOptions(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
+    });
   }, []);
 
   // reset position when team is changed

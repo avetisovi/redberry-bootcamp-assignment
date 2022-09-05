@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import LaptopListItem from '../components/Laptop/LaptopListItem';
-import BackBtn from '../components/BackBtn';
+import BackBtn from '../components/UI/BackBtn/BackBtn';
+import { ServerErrorContext } from '../context';
 import { getData } from '../utils';
 
 const LaptopsList = () => {
   const [laptops, setLaptops] = useState([]);
+  const { setServerError, setErrorText } = useContext(ServerErrorContext);
 
   // fetching laptops list and then parsing it to laptops array
   useEffect(() => {
     getData(
       `https://pcfy.redberryinternship.ge/api/laptops?token=${process.env.REACT_APP_TOKEN}`
     ).then((res) => {
-      if (res) setLaptops(res);
+      if (res.ok) {
+        res.json().then((res) => setLaptops(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
     });
   }, []);
 

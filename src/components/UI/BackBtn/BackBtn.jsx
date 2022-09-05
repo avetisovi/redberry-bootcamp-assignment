@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import arrowBack from '../images/arrow-back.svg';
+import arrowBack from '../../../images/arrow-back.svg';
+
+import cl from './BackBtn.module.css';
 
 const BackBtn = ({ formStep, prevStep }) => {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ const BackBtn = ({ formStep, prevStep }) => {
     navigate(-1);
   };
   return (
-    <button onClick={handleNavigtion} className="back-btn">
+    <button onClick={handleNavigtion} className={cl.backBtn}>
       <img src={arrowBack} alt="Back to landing page" />
     </button>
   );

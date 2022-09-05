@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getData } from '../utils';
-import BackBtn from '../components/BackBtn';
+import BackBtn from '../components/UI/BackBtn/BackBtn';
 import LaptopOwner from '../components/Laptop/LaptopOwner';
 import placeholderImg from '../images/placeholder.webp';
 import LaptopProperties from '../components/Laptop/LaptopProperties';
 import LaptopCpu from '../components/Laptop/LaptopCpu';
 import LaptopPurchase from '../components/Laptop/LaptopPurchase';
 import LaptopPurchaseDate from '../components/Laptop/LaptopPurchaseDate';
+import { useContext } from 'react';
+import { ServerErrorContext } from '../context';
 
 const LaptopItem = () => {
+  const { setErrorText, setServerError } = useContext(ServerErrorContext);
   // laptop id used to fetch laptop data
   const laptopId = useParams().id;
 
@@ -39,7 +42,12 @@ const LaptopItem = () => {
     getData(
       `https://pcfy.redberryinternship.ge/api/laptop/${laptopId}?token=${process.env.REACT_APP_TOKEN}`
     ).then((res) => {
-      if (res) setLaptop(res);
+      if (res.ok) {
+        res.json().then((res) => setLaptop(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
     });
   }, []);
 

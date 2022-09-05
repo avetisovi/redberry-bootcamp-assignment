@@ -44,12 +44,6 @@
 }
 
 @media (max-width: 992px) {
-  .back-btn {
-    top: 35px;
-    left: 20px;
-    background-color: transparent;
-  }
-
   .form {
     padding: 45px 0 0;
     &__header-steps::after {
@@ -239,16 +233,6 @@
   }
   .landing-link {
     width: 100%;
-  }
-
-  .back-btn {
-    padding: 5px;
-
-    width: auto;
-    height: auto;
-
-    top: 30px;
-    left: 15px;
   }
 
   .form {

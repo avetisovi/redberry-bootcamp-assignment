@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { ServerErrorContext } from '../../context';
 import { getData } from '../../utils';
-import LaptopOption from '../UI/LaptopOption/LaptopOption';
+import LaptopOption from './UI/LaptopOption/LaptopOption';
 
 const LaptopOwner = ({ stats }) => {
   const [formattedStats, setFormattedStats] = useState([]);
   const [teams, setTeams] = useState([]);
   const [positions, setPositions] = useState([]);
 
+  const { setErrorText, setServerError } = useContext(ServerErrorContext);
+
   // fetching teams and positions
   useEffect(() => {
     getData('https://pcfy.redberryinternship.ge/api/teams').then((res) => {
-      if (res) setTeams(res);
+      if (res.ok) {
+        res.json().then((res) => setTeams(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
     });
+
     getData('https://pcfy.redberryinternship.ge/api/positions').then((res) => {
-      if (res) setPositions(res);
+      if (res.ok) {
+        res.json().then((res) => setPositions(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
     });
   }, []);
 

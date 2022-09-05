@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FormValuesContext } from '../../../context';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import InputWithLabelAndHint from '../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 
 const CoworkerInfoTop = ({
   firstNameAlert,

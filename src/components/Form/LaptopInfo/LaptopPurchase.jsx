@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
-import DateInput from '../../UI/DateInput/DateInput';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import DateInput from '../UI/DateInput/DateInput';
+import InputWithLabelAndHint from '../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 
 import gelImg from '../../../images/gel.svg';
 import { FormValuesContext } from '../../../context';

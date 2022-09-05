@@ -2,14 +2,13 @@
 export const getData = async (url) => {
   try {
     const response = await fetch(url);
-    if (response.ok) {
-      const result = await response.json();
-      return result.data;
-    }
-  } catch (error) {}
+    return response;
+  } catch (error) {
+    return error;
+  }
 };
 
-export const postData = async (url, data) => {
+export const postData = async (url, data, laptopImgSize) => {
   try {
     // data as FormData
     const formData = objToFormData(data);
@@ -22,11 +21,11 @@ export const postData = async (url, data) => {
     };
 
     // fetch request
-    const request = await fetch(url, requestOptions);
+    const request = fetch(url, requestOptions);
     const response = await request;
     return response;
   } catch (error) {
-    throw new Error(error);
+    return error;
   }
 };
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import Dropdown from '../../UI/RegularDropdown/Dropdown';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import Dropdown from '../UI/RegularDropdown/Dropdown';
+import InputWithLabelAndHint from '../UI/InputWithLabelAndHint/InputWithLabelAndHint';
 import { FormValuesContext } from '../../../context';
 
 const LaptopCpu = ({

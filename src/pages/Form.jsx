@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import CoworkerInfo from '../components/Form/CoworkerInfo/CoworkerInfo';
 import LaptopInfo from '../components/Form/LaptopInfo/LaptopInfo';
 import FormHeader from '../components/Form/FormHeader';
-import BackBtn from '../components/BackBtn';
-import { FormValuesContext } from '../context';
+import BackBtn from '../components/UI/BackBtn/BackBtn';
+import { FormValuesContext, ServerErrorContext } from '../context';
 
 import logo from '../images/form-logo.png';
 import { postData, initialiseLocalStorage } from '../utils';
 import FormSuccessPopup from '../components/Form/FormSuccessPopup';
 
 const Form = () => {
+  const { setServerError, setErrorText } = useContext(ServerErrorContext);
+
   // if true FormSuccessPopup is shown.
   const [successPopup, setSuccessPopup] = useState(false);
 
@@ -114,6 +116,12 @@ const Form = () => {
         // showing FormSuccessPopup after sending data
         window.scrollTo(0, 0);
         setSuccessPopup(true);
+      } else if (laptopImgSize.includes('mb')) {
+        setServerError(true);
+        setErrorText('Image size is too big');
+      } else {
+        setServerError(true);
+        setErrorText(res.toString());
       }
     });
   };

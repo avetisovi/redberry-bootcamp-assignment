@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import LaptopOption from '../UI/LaptopOption/LaptopOption';
+import LaptopOption from './UI/LaptopOption/LaptopOption';
 
 const LaptopCpu = ({ stats }) => {
   const [formattedStats, setFormattedStats] = useState([]);

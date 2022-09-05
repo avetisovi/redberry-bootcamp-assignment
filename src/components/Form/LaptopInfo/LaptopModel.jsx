@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { FormValuesContext } from '../../../context';
-import InputWithLabelAndHint from '../../UI/InputWithLabelAndHint/InputWithLabelAndHint';
-import Dropdown from '../../UI/RegularDropdown/Dropdown';
+import InputWithLabelAndHint from '../UI/InputWithLabelAndHint/InputWithLabelAndHint';
+import Dropdown from '../UI/RegularDropdown/Dropdown';
 
 const LaptopModel = ({
   brandOptions,

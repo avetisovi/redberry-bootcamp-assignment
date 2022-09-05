@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { ServerErrorContext } from '../../context';
 import { getData } from '../../utils';
 
-import LaptopOption from '../UI/LaptopOption/LaptopOption';
+import LaptopOption from './UI/LaptopOption/LaptopOption';
 
 const LaptopProperties = ({ stats }) => {
   const [formattedStats, setFormattedStats] = useState([]);
   const [brands, setBrands] = useState([]);
+  const { setServerError, setErrorText } = useContext(ServerErrorContext);
 
   // fetching brands
   useEffect(() => {
     getData('https://pcfy.redberryinternship.ge/api/brands').then((res) => {
-      if (res) setBrands(res);
+      if (res.ok) {
+        res.json().then((res) => setBrands(res.data));
+      } else {
+        setServerError(true);
+        setErrorText(res.statusText);
+      }
     });
   }, []);
 
