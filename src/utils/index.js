@@ -4,11 +4,11 @@ export const getData = async (url) => {
     const response = await fetch(url);
     return response;
   } catch (error) {
-    return error;
+    return { statusText: error.message };
   }
 };
 
-export const postData = async (url, data, laptopImgSize) => {
+export const postData = async (url, data) => {
   try {
     // data as FormData
     const formData = objToFormData(data);
