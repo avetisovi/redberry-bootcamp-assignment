@@ -9,10 +9,12 @@ const LaptopOwner = ({ stats }) => {
 
   // fetching teams and positions
   useEffect(() => {
-    getData('https://pcfy.redberryinternship.ge/api/teams').then(setTeams);
-    getData('https://pcfy.redberryinternship.ge/api/positions').then(
-      setPositions
-    );
+    getData('https://pcfy.redberryinternship.ge/api/teams').then((res) => {
+      if (res) setTeams(res);
+    });
+    getData('https://pcfy.redberryinternship.ge/api/positions').then((res) => {
+      if (res) setPositions(res);
+    });
   }, []);
 
   // waiting stats to fetch to format data

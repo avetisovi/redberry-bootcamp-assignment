@@ -9,7 +9,9 @@ const LaptopProperties = ({ stats }) => {
 
   // fetching brands
   useEffect(() => {
-    getData('https://pcfy.redberryinternship.ge/api/brands').then(setBrands);
+    getData('https://pcfy.redberryinternship.ge/api/brands').then((res) => {
+      if (res) setBrands(res);
+    });
   }, []);
 
   // waiting stats to fetch to format data

@@ -1,13 +1,15 @@
 // fetching data from server
 export const getData = async (url) => {
   try {
-    const request = await fetch(url);
-    const response = await request.json();
-    return response.data;
+    const response = await fetch(url);
+    if (response.ok) {
+      const result = await response.json();
+      return result.data;
+    }
   } catch (error) {}
 };
 
-export const postData = async (data) => {
+export const postData = async (url, data) => {
   try {
     // data as FormData
     const formData = objToFormData(data);
@@ -20,10 +22,7 @@ export const postData = async (data) => {
     };
 
     // fetch request
-    const request = await fetch(
-      'https://pcfy.redberryinternship.ge/api/laptop/create',
-      requestOptions
-    );
+    const request = await fetch(url, requestOptions);
     const response = await request;
     return response;
   } catch (error) {

@@ -202,9 +202,13 @@
 @media (max-width: 600px) {
   .success__popup {
     padding: 165px 15px 70px;
+
     width: 100%;
     height: 100%;
+
     justify-content: space-between;
+
+    border-radius: 0;
     &-title {
       font-size: 22px;
       line-height: 40px;
@@ -226,7 +230,6 @@
     gap: 15px;
     &-img {
       width: 215px;
-      height: 140px;
     }
   }
 }

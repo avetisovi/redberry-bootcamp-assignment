@@ -10,10 +10,13 @@ const LaptopsList = () => {
   useEffect(() => {
     getData(
       `https://pcfy.redberryinternship.ge/api/laptops?token=${process.env.REACT_APP_TOKEN}`
-    ).then(setLaptops);
+    ).then((res) => {
+      if (res) setLaptops(res);
+    });
   }, []);
 
   document.querySelector('body').style.overflow = 'auto';
+  document.querySelector('html').style.overflow = 'auto';
 
   return (
     <div className="laptop">

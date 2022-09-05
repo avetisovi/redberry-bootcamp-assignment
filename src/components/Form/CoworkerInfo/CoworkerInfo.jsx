@@ -93,6 +93,7 @@ const CoworkerInfo = ({ nextStep, setCoworkerData }) => {
   };
 
   document.querySelector('body').style.overflow = 'auto';
+  document.querySelector('html').style.overflow = 'auto';
 
   return (
     <form className="coworker-info" onSubmit={handleSubmit} id="coworker-info">

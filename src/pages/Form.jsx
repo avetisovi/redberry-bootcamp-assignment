@@ -103,7 +103,10 @@ const Form = () => {
       token: process.env.REACT_APP_TOKEN
     };
 
-    postData(fullData).then((res) => {
+    postData(
+      'https://pcfy.redberryinternship.ge/api/laptop/create',
+      fullData
+    ).then((res) => {
       if (res.ok) {
         // clearing localStorage data
         localStorage.clear();
@@ -119,9 +122,13 @@ const Form = () => {
     initialiseLocalStorage(values, setValues);
   }, []);
 
-  successPopup
-    ? (document.querySelector('body').style.overflow = 'hidden')
-    : (document.querySelector('body').style.overflow = 'auto');
+  if (successPopup) {
+    document.querySelector('body').style.overflow = 'hidden';
+    document.querySelector('html').style.overflow = 'hidden';
+  } else {
+    document.querySelector('body').style.overflow = 'auto';
+    document.querySelector('html').style.overflow = 'auto';
+  }
 
   return (
     <div className="form">
@@ -143,7 +150,7 @@ const Form = () => {
         </FormValuesContext.Provider>
       </div>
       <img className="form__logo" src={logo} alt="" />
-      {successPopup && <FormSuccessPopup setVisible={setSuccessPopup} />}
+      {successPopup && <FormSuccessPopup />}
     </div>
   );
 };

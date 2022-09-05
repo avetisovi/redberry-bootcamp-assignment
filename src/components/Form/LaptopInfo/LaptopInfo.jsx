@@ -36,7 +36,9 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
       setBrandOptions
     );
 
-    getData('https://pcfy.redberryinternship.ge/api/cpus').then(setCpuOptions);
+    getData('https://pcfy.redberryinternship.ge/api/cpus').then((res) => {
+      if (res) setCpuOptions(res);
+    });
   }, []);
 
   // submitting form and sending post request
@@ -68,7 +70,6 @@ const LaptopInfo = ({ prevStep, handleConfirmation, coworkerData }) => {
 
     // checking everything is filled
     if (!emptyValues.length) {
-      console.log('working');
       const data = new FormData(e.target);
 
       data.append('laptop_brand_id', values.laptopBrand.id);

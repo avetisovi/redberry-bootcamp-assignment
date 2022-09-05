@@ -29,7 +29,8 @@ const LaptopItem = () => {
       hard_drive_type: '',
       name: '',
       ram: '',
-      cpu: { cores: '', threads: '', name: '' }
+      cpu: { cores: '', threads: '', name: '' },
+      price: ''
     }
   });
 
@@ -37,11 +38,13 @@ const LaptopItem = () => {
   useEffect(() => {
     getData(
       `https://pcfy.redberryinternship.ge/api/laptop/${laptopId}?token=${process.env.REACT_APP_TOKEN}`
-    ).then(setLaptop);
-    getData('https://pcfy.redberryinternship.ge/api/');
+    ).then((res) => {
+      if (res) setLaptop(res);
+    });
   }, []);
 
   document.querySelector('body').style.overflow = 'auto';
+  document.querySelector('html').style.overflow = 'auto';
 
   return (
     <div className="laptop">

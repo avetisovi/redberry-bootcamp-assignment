@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 import successIcon from '../../images/success.svg';
 
-const FormSuccessPopup = ({ setVisible }) => {
+const FormSuccessPopup = () => {
   // disabling scroll when FormSuccessData is shown
   document.querySelector('body').style.overflow = 'hidden';
+  document.querySelector('html').style.overflow = 'hidden';
 
   return (
     <div className="success__popup-wrapper">
